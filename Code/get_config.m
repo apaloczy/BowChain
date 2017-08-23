@@ -10,6 +10,8 @@ config_default();
 cruise_file = fullfile(['Cruise_' cruise],['config_' cruise]);
 if exist(cruise_file) == 2
     feval(['config_' cruise])
+else
+    error('Cannot find file: %s.m',cruise_file)
 end
 
 % Check for missing options
