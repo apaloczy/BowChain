@@ -1,5 +1,5 @@
 %% Cruise-wide options
-config.dir_raw = '~/Google Drive/Arctic_bowchain/RawData/';
+config.dir_raw = [getenv('HOME') '/OSU/BowChain/Sources/Arctic_bowchain/RawData/'];
 
 %% Deployment-specific options
 switch dep

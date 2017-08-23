@@ -9,8 +9,10 @@ addpath(genpath(['Cruise_' cruise])); % cruise-specific functions
 config = get_config(cruise,dep);
 
 %% Preprocessing
+config = preproc_setup(config);   % set up filepaths & parse funcs
+config = preproc_dep(config);     % deployment-specific preprocessing
 config = preproc_raw2mat(config); % convert raw data to .mat files
-preproc_dep(config); % deployment-specific preprocessing
+
 
 %% Main processing
 data = proc_load_mat(config);
