@@ -1,0 +1,1 @@
+config.proc.freq_base = 2;
