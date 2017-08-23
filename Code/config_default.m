@@ -1,1 +1,1 @@
-config.proc.freq_base = 2;
+config.freq_base = 2;
