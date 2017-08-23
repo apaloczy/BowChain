@@ -5,7 +5,7 @@ perd_base =1/(config.freq_base*86400);
 
 %% Initialize grid variables
 grid = struct();
-grid.dn = (config.dn_range(1)-0.001:perd_base:config.dn_range(2)+0.001;
+grid.dn = (config.dn_range(1)-0.001):perd_base:(config.dn_range(2)+0.001);
 flds = {'t','p','s'};
 for f = 1:length(flds)
     grid.(flds{f}) = nan(N,length(grid.dn));
