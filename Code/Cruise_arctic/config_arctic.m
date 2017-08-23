@@ -1,6 +1,4 @@
 %% Cruise-wide options
-config.dir_data = '~/OSU/BowChain/Sources/Arctic_bowchain/RawData/';
-config.freq_base = 2; % Hz
 config.dir_raw = '~/OSU/BowChain/Sources/Arctic_bowchain/RawData/';
 
 %% Deployment-specific options
