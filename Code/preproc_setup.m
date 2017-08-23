@@ -1,6 +1,6 @@
 function config = preproc_setup(config);
 
-disp('Gathering sensor information...')
+disp('Identifying sensors and finding data...')
 config.sensors = containers.Map();
 pos_ind = 0; % position index
 for i = 1:length(config.sensor_sn)
@@ -22,11 +22,13 @@ for i = 1:length(config.sensor_sn)
                 'parse_func'  , parse_func             ,...
                 'pos'         , config.sensor_pos(i)   ,...
                 'pos_ind'     , pos_ind);
-            msg = '  1 raw file for %s %s';
+            msg = '  %s [%s]';
             disp(sprintf(msg,sensor_type,sn));
         else
-            msg = '  %d raw file(s) for %s %s; skipped!';
-            disp(sprintf(msg,length(file_raw),sensor_type,sn));
+            msg = '%s [%s]: %d raw file(s), skipped!';
+            disp(sprintf(msg,sensor_type,sn,length(file_raw)));
         end
+    else
+        disp(sprintf('  No sensor information found for [%s]',sn))
     end
 end
