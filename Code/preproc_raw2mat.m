@@ -3,9 +3,8 @@ function config = preproc_raw2mat(config)
 
 disp('Converting raw data to .mat files...')
 
-sns = keys(config.sensors);
-for i = 1:length(sns)
-    sn = sns{i};
+for sn_cell = keys(config.sensors)
+    sn = char(sn_cell);
     [~,fname,fext] = fileparts(config.sensors(sn).file_raw);
     if ~exist(config.sensors(sn).file_mat)
         disp(['  ' fname fext ' --> ' fname '.mat'])
