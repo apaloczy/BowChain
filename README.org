@@ -6,6 +6,8 @@ Process a bow chain dataset using ~BowChain_master(cruiseName,deploymentName)~.
 
 * Configuration
 
+** Cruise- and deployment-specific configuration
+
 Within the [[file:Code/][Code]] directory, cruise-specific folders contain information needed to
 locate and process deployments. Each cruise needs a configuration file in its
 corresponding folder.
@@ -13,7 +15,7 @@ corresponding folder.
 For example, [[file:Code/Cruise_ArcticMix/config_ArcticMix.m][Cruse_ArcticMix/config_ArcticMix.m]] contains information about bow
 chain deployments on the ArcticMix cruise. Within the configuration file is a
 switch statement that sets processing options depending on the given deployment
-name.
+name:
 
 #+BEGIN_SRC matlab
 %% Deployment-specific options
@@ -30,9 +32,36 @@ switch dep
 end
 #+END_SRC
 
+For now, only the "MooringToIce" deployment is configured.
 
 
-* Processing Options
+** Required configuration options 
+
+~freq_base~: The frequency of the output gridded data
+~dir_raw~: The full path to the base directory containing raw data
+~dir_deployment~: The subdirectory within ~dir_raw~ containing data logged during the deployment
+~dn_range~: A range of datenums for the deployment start and end times
+~sensor_sn~: A cell array of sensor serial numbers (as strings)
+~sensor_pos~: Nominal positions of sensors along the chain
+~chain_model~: The model used to accout for the bow chain's shape
+
+An error will be thrown before processing begins if any of these options have
+not been specified.
+
+** Setting configuration options
+
+Configuration options are first loaded from [[file:Code/config_default.m][config_default.m]]. Currently, this
+only sets a default base frequency and chain model name:
+
+#+BEGIN_SRC matlab
+% config_default.m
+config.freq_base = 2;
+config.chain_model = 'cm_straight';
+#+END_SRC
+
+Deployment-specific options are set as shown above for the "MooringToIce"
+deployment. Any options defined prior to the deployment name switch will be
+overwritten by deployment-specific configuration.
 
 
 
