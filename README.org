@@ -65,7 +65,8 @@ Deployment-specific options are set as shown above for the "MooringToIce"
 deployment. Any options defined prior to the deployment name switch will be
 overwritten by deployment-specific configuration.
 
-The order in which options are read results in the following priority:
+The order in which options are read results in the following priority (higher
+priorities overwrite lower priorities):
 
 1. Cruise-wide options defined after the deployment name switch
 2. Deployment-specific options defined in the deployment name switch
@@ -73,6 +74,8 @@ The order in which options are read results in the following priority:
 4. Default options defined in [[file:Code/config_default.m][config_default.m]]
 
 
+* Chain Shape models
 
+** cm_straight.m
 
-
+[[Figures/chain_models/cm_straight.gif]]
