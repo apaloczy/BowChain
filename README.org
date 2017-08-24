@@ -37,13 +37,15 @@ For now, only the "MooringToIce" deployment is configured.
 
 ** Required configuration options 
 
-~freq_base~: The frequency of the output gridded data
-~dir_raw~: The full path to the base directory containing raw data
-~dir_deployment~: The subdirectory within ~dir_raw~ containing data logged during the deployment
-~dn_range~: A range of datenums for the deployment start and end times
-~sensor_sn~: A cell array of sensor serial numbers (as strings)
-~sensor_pos~: Nominal positions of sensors along the chain
-~chain_model~: The model used to accout for the bow chain's shape
+| Option           | Description                                                                    |
+|------------------+--------------------------------------------------------------------------------|
+| ~freq_base~      | The frequency of the output gridded data                                       |
+| ~dir_raw~        | The full path to the base directory containing raw data                        |
+| ~dir_deployment~ | The subdirectory within ~dir_raw~ containing data logged during the deployment |
+| ~dn_range~       | A range of datenums for the deployment start and end times                     |
+| ~sensor_sn~      | A cell array of sensor serial numbers (as strings)                             |
+| ~sensor_pos~     | Nominal positions of sensors along the chain                                   |
+| ~chain_model~    | The model used to accout for the bow chain's shape                             |
 
 An error will be thrown before processing begins if any of these options have
 not been specified.
