@@ -78,4 +78,23 @@ priorities overwrite lower priorities):
 
 ** cm_straight.m
 
+This model requires 2 assumptions:
+
+1. Instruments only move vertically, as if they're attached to a spring on a pole.
+2. Features (e.g. changes in temperature) are vertically uniform (background
+   levels do not need to be uniform).
+
+These assumptions are equivalent to assuming that /all/ apparent time offsets in
+sensor signals are due to clock differences.
+
+The figure below illustrates the differences between an actual temperature field
+and what is measured by a chain of sensors with random time offsets. Shifting
+sensor signals in time to maximize correlation between signals from adjacent
+sensors (not shown in figure) allows for reconstruction of the actual
+temperature field.
+
 [[Figures/chain_models/cm_straight.gif]]
+
+/Note that in the abscence of vertical sensor motion, x-offsets in instrument
+position result in apparent time offsets under this model and can handled using
+the same method./
