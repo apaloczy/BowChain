@@ -95,4 +95,4 @@ temperature field.
 
 [[Figures/chain_models/cm_straight.gif]]
 
-/Note that in the abscence of vertical sensor motion, x-offsets in instrument position result in apparent time offsets under this model and can handled using the same method./
+/Note that in the absence of vertical sensor motion, x-offsets in instrument position result in apparent time offsets under this model and can handled using the same method./
