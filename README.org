@@ -2,7 +2,7 @@
 #+AUTHOR: Dylan Winters
 
 * Overview
-Process a bow chain dataset using ~BowChain_master(cruiseName,deploymentName)~.
+Process a bow chain dataset using =BowChain_master(cruiseName,deploymentName)=.
 
 * Configuration
 
@@ -39,13 +39,13 @@ For now, only the "MooringToIce" deployment is configured.
 
 | Option           | Description                                                                    |
 |------------------+--------------------------------------------------------------------------------|
-| ~freq_base~      | The frequency of the output gridded data                                       |
-| ~dir_raw~        | The full path to the base directory containing raw data                        |
-| ~dir_deployment~ | The subdirectory within ~dir_raw~ containing data logged during the deployment |
-| ~dn_range~       | A range of datenums for the deployment start and end times                     |
-| ~sensor_sn~      | A cell array of sensor serial numbers (as strings)                             |
-| ~sensor_pos~     | Nominal positions of sensors along the chain                                   |
-| ~chain_model~    | The model used to accout for the bow chain's shape                             |
+| =freq_base=      | Frequency of the output gridded data                                           |
+| =dir_raw=        | Full path to the base directory containing raw data                            |
+| =dir_deployment= | Subdirectory within =dir_raw= containing data logged during the deployment    |
+| =dn_range=       | Range of datenums for the deployment start and end times                       |
+| =sensor_sn=      | Cell array of sensor serial numbers (as strings)                               |
+| =sensor_pos=     | Nominal positions of sensors along the chain                                   |
+| =chain_model=    | Model used to accout for the bow chain's shape                                 |
 
 An error will be thrown before processing begins if any of these options have
 not been specified.
@@ -72,27 +72,23 @@ priorities overwrite lower priorities):
 2. Deployment-specific options defined in the deployment name switch
 3. Cruise-wide options defined prior to the deployment name switch
 4. Default options defined in [[file:Code/config_default.m][config_default.m]]
-
+   
 
 * Chain Shape models
 
 ** cm_straight.m
 
-This model requires 2 assumptions:
+Consider the case of a vertical chain with no clock offsets between
+instruments. At any given time /t/, we directly sample a vertical slice of the
+temperature field at position /x(t)/:
 
-1. Instruments only move vertically, as if they're attached to a spring on a pole.
-2. Features (e.g. changes in temperature) are vertically uniform (background
-   levels do not need to be uniform).
+[[Figures/chain_models/cm_straight_no_offset.gif]]
 
-These assumptions are equivalent to assuming that /all/ apparent time offsets in
-sensor signals are due to clock differences.
+Introducing random clock offsets makes it appear that the instruments are not
+aligned horizontally:
 
-The figure below illustrates the differences between an actual temperature field
-and what is measured by a chain of sensors with random time offsets. Shifting
-sensor signals in time to maximize correlation between signals from adjacent
-sensors (not shown in figure) allows for reconstruction of the actual
-temperature field.
+[[Figures/chain_models/cm_straight_t_offset.gif]]
 
-[[Figures/chain_models/cm_straight.gif]]
+Shifting sensor signals in time to maximize correlation between signals from
+adjacent sensors reconstructs a vertical slice beneath the ship at any given time.
 
-/Note that in the absence of vertical sensor motion, x-offsets in instrument position result in apparent time offsets under this model and can handled using the same method./
