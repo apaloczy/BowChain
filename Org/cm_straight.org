@@ -1,0 +1,15 @@
+#+TITLE: cm_straight
+
+Consider the case of a vertical chain with no clock offsets between
+instruments. At any given time /t/, we directly sample a vertical slice of the
+temperature field at position /x(t)/:
+
+[[Figures/chain_models/cm_straight_no_offset.gif]]
+
+Introducing random clock offsets makes it appear that the instruments are not
+aligned horizontally:
+
+[[Figures/chain_models/cm_straight_t_offset.gif]]
+
+Shifting sensor signals in time to maximize correlation between signals from
+adjacent sensors reconstructs a vertical slice beneath the ship at any given time.
