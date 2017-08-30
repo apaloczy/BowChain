@@ -76,4 +76,4 @@ priorities overwrite lower priorities):
 
 * Chain Shape models
 
-** [[org/cm_straight.org][cm_straight]]
+** [[Org/cm_straight.org][cm_straight]]
