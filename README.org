@@ -74,6 +74,6 @@ priorities overwrite lower priorities):
 4. Default options defined in [[file:Code/config_default.m][config_default.m]]
    
 
-* Chain Shape models
+* Chain Shape Models
 
-** [[Org/cm_straight.org][cm_straight]]
+  1. [[Org/cm_straight.org][cm_straight]]
