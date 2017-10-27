@@ -1,23 +1,25 @@
 function [sensor_type funcname ext status] = get_sensor_info(serial)
 
-%% Instrument map
-instruments = containers.Map('keytype','char','valuetype','char');
+%% Instrument serial numbers
 
 % SBE39
 sbe39 = {'03253'};
-for sn = sbe39, instruments(sn{:}) = 'SBE39'; end
 
 % SBE56
 sbe56 = {'00372','00392','00407','00422','00442','00445','00451'};
-for sn = sbe56, instruments(sn{:}) = 'SBE56'; end
 
 % RBR Solo
 rbr_solo = {'100153','100154','100155','100156','100157','100158',...
             '100159','100160','100161','100162'};
-for sn = rbr_solo, instruments(sn{:}) = 'RBR Solo'; end
 
 % RBR Concerto
 rbr_concerto = {'060280','060281'};
+
+%% Make instrument map
+instruments = containers.Map('keytype','char','valuetype','char');
+for sn = sbe39, instruments(sn{:}) = 'SBE39'; end
+for sn = sbe56, instruments(sn{:}) = 'SBE56'; end
+for sn = rbr_solo, instruments(sn{:}) = 'RBR Solo'; end
 for sn = rbr_concerto, instruments(sn{:}) = 'RBR Concerto'; end
 
 %% Parse function map

@@ -20,7 +20,7 @@ shown below:
 #+BEGIN_SRC matlab
   %% Deployment setup
   config(1).name = 'MooringToIce'
-  config(1).dir_raw = '11sept_1900_recovery';
+  config(1).dir_raw = '/path/to/raw/data/11sept_1900_recovery';
   config(1).dn_range = datenum([...
       '09-Sep-2015 21:49:40';
       '10-Sep-2015 08:36:14']);
@@ -57,17 +57,31 @@ ASIRI_2015 cruise is undefined, execution will halt with the following error:
 *** Locating instrument data
 
 Data organization might change between cruises, but is likely consistent for
-each cruise. 
+each cruise. By default, it is assumed that all raw data files (from every
+instrument) reside in the deployments ~config.dir_raw~ folder.
 
 Within each cruise folder, an optional ~sensor_dirs_<cruise>~ function can be
-defined. This function takes a deployment's config structure entry and an
-instrument serial number as input and returns a directory name for raw data.
+defined if more complex organization is required. This function takes a
+deployment's config structure entry and an instrument serial number as input and
+returns a new directory name for that particular instrument's raw data folder.
 
-Again using the ArctixMix deployment example
+Again using the ArctixMix deployment example:
 
+In the case of the /MooringToIce/ deployment, raw instrument data was organized
+into instrument-specific directories within the ~config.dir_raw~ folder. The
+[[file:Code/Cruise_ArcticMix/sensor_dirs_ArcticMix.m][sensor_dirs_ArcticMix]] function is thus straightforward - we just need to append
+the serial number to the deployment's ~config.dir_raw~ field.
 
-In the case of the ArcticMix cruise, raw instrument data was organized into
-instrument-specific directories within each "recovery" folders. 
+#+BEGIN_SRC matlab
+  function sensor_dir = sensor_dirs_ArcticMix(config,sn)
+  sensor_dir = fullfile(config.dir_raw,sn);
+#+END_SRC
+
+Note that since the ~config~ structure contains the deployment's name, and a
+single instrument serial number is given as input, this function allows for
+extreme flexibility down to the level of instrument-specific folders on a
+per-deployment basis. This is hopefully not required with good data
+organization!
 
 
 ** Instrument configuration
@@ -79,7 +93,7 @@ input.
 
 *Any instruments that I have not encountered will not be included in this list!*
 Fortunately, associating serial numbers to instruments can be easily done by
-modifying the first few lines of ~get_sensor_info~ to include new serial numbers:
+modifying the first few lines of [[file:Code/get_sensor_info.m][get_sensor_info]] to include new serial numbers:
 
 #+BEGIN_SRC matlab
   %% Instrument serial numbers
@@ -123,18 +137,11 @@ types and parsing functions.
 
 This section can be safely ignored, but might be useful.
 
-The ~fill_defaults~ function can be used at any stage of setup to apply a set of
+The [[file:Code/fill_defaults.m][fill_defaults]] function can be used at any stage of setup to apply a set of
 default options to a cruise's deployment configuration structure. It is used in
 the core code to apply the default ~freq_base~ and ~chain_model~ parameters
 shown in the table above. Only options that are undefined will be filled -
 existing options will not be overwritten.
-
-#+BEGIN_SRC matlab
-% config_default.m
-function config = config_default()
-config.freq_base = 2;
-config.chain_model = 'cm_straight';
-#+END_SRC
 
 * Chain Shape Models
 
