@@ -27,7 +27,7 @@ for i = 1:length(config)
     %% Main processing
     data = proc_load_mat(config(i));
     grid{i} = proc_grid_init(data,config(i));
-    grid{i} = dep_proc_pre_chain(grid,config(i));
-    grid{i} = proc_grid_chain_offsets(grid,config(i));
+    grid{i} = dep_proc_pre_chain(grid{i},config(i));
+    grid{i} = proc_grid_chain_offsets(grid{i},config(i));
 end
 

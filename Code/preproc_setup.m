@@ -16,7 +16,7 @@ for i = 1:length(config.sensor_sn)
         else
             fpath = config.dir_raw;
         end
-        file_raw = dir(fullfile(fpath,['*' ext]));
+        file_raw = dir(fullfile(fpath,['*' sn '*' ext]));
         if length(file_raw) == 1
             pos_ind = pos_ind + 1;
             fn_raw = file_raw.name;
@@ -39,3 +39,5 @@ for i = 1:length(config.sensor_sn)
         disp(sprintf('  No sensor information found for [%s]',sn))
     end
 end
+
+
