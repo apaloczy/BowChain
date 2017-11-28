@@ -3,7 +3,7 @@ function [sensor_type funcname ext status] = get_sensor_info(serial)
 %% Instrument serial numbers
 
 % SBE39
-sbe39 = {'03253'};
+sbe39 = {'03253','03134'};
 
 % SBE56
 sbe56 = {'00280','00281','00285','00291','00292','00295','00296', '00299', ...
