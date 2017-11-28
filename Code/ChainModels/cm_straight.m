@@ -1,16 +1,12 @@
-function offsets = cm_straight(grid,config)
-% Assume a vertical bow-chain moving through vertically uniform features.
-% Instruments can move up and down, but any signal offsets must be from clock
-% offsets only - as if everything is attached to a spring on a pole.
+function grid = cm_straight(grid,cfg)
 
-offsets.clock = zeros(size(grid.t,1),1);
+% Assume the chain is completely straight. Calculate vertical positions by
+% interpolating pressure vs. position.
+hasP = ~all(isnan(grid.p),2);
+grid.z = -interp1(grid.pos(hasP),grid.p(hasP,:),grid.pos,'linear','extrap')
+grid.x = zeros(size(grid.x));
 
-for i = 2:length(offsets.clock)
-  % Get time offset
-  offsets.clock(i) = determine_t_offset(grid.dn',grid.t(i-1,:)',...
-                                    grid.dn',grid.t(i,:)',config.dn_range);
-end
-offsets.clock = cumsum(offsets.clock);
-
-
+% dl = diff(grid.pos*ones(1,length(grid.dn)));
+% dz = diff(grid.z);
+% dl = max(dl,dz);
 

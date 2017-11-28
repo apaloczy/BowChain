@@ -1,24 +1,24 @@
 function config = config_ASIRI_2015()
 
 %% Cruise-wide options
-dir_raw = fullfile(getenv('DROPBOX'), 'ASIRI-bowchain/raw/');
+dir_raw = fullfile(getenv('DATA'), 'BowChain/ASIRI_2015/raw/');
 
 %% Deployment setup
 config(1).name = 'Deploy01';
-config(1).dn_range = datenum([2015 8 24 04 30 00;
-                              2015 8 24 05 30 00]);
+config(1).dn_range = datenum([2015 8 24 04 19 20;
+                              2015 8 24 05 30 29]);
 config(1).dir_raw = fullfile(dir_raw, 'Deploy01/raw/');
-config(1).sensor_sn = {'060094';
-                    '060095';
-                    '077561';
+
+config(1).sensor_sn = {'077561';
                     '077562';
                     '077563';
                     '077564';
                     '077565';
-                    '077566';
                     '077567';
+                    '077566';
                     '077568';
                     '077569';
+                    '060095';
                     '077570';
                     '100020';
                     '100021';
@@ -27,8 +27,29 @@ config(1).sensor_sn = {'060094';
                     '100027';
                     '100028';
                     '100029';
+                    '060094';
                     '100031'};
-config(1).sensor_pos = 1:length(config(1).sensor_sn); % PLACEHOLDER! definitley not accurate positions
+config(1).sensor_pos = [050;
+                    102;
+                    200;
+                    250;
+                    300;
+                    350;
+                    400;
+                    450;
+                    500;
+                    550;
+                    600;
+                    650;
+                    700;
+                    750;
+                    800;
+                    850;
+                    900;
+                    950;
+                    1000;
+                    1050]/100;
+config(1).chain_model = 'cm_straight';
 
 return
 

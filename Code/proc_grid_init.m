@@ -6,11 +6,10 @@ perd_base =1/(config.freq_base*86400);
 %% Initialize grid variables
 grid = struct();
 grid.dn = (config.dn_range(1)-0.001):perd_base:(config.dn_range(2)+0.001);
-flds = {'t','p','s'};
+flds = {'t','p','s','x','z'};
 for f = 1:length(flds)
     grid.(flds{f}) = nan(N,length(grid.dn));
 end
-grid.pos = nan(N,length(grid.dn));
 
 % Subsample/interpolate all data onto intermediate time base
 for sn_cell = keys(config.sensors)
@@ -33,5 +32,7 @@ for sn_cell = keys(config.sensors)
         end
     end
     grid.pos(pos_ind,:) = config.sensors(sn).pos;
-
 end
+
+grid.info = {};
+

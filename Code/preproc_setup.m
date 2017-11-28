@@ -39,5 +39,3 @@ for i = 1:length(config.sensor_sn)
         disp(sprintf('  No sensor information found for [%s]',sn))
     end
 end
-
-
