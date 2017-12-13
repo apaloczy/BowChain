@@ -37,6 +37,7 @@ for i = 1:length(config)
     % 3) Compute and/or apply time offsets and resample
     grid(i) = proc_time_offsets(grid(i),data,cfg);
     % 4) Compute positional offsets using chain shape model
+    grid(i) = proc_pressure_cal(grid(i),cfg);
     grid(i) = proc_chain_model(grid(i),cfg);
     grid(i) = post_chain_hook(grid(i),cfg);
 end
