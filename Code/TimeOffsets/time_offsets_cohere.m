@@ -8,8 +8,9 @@ for i = 2:length(offsets)
 end
 offsets = cumsum(offsets);
 
-for sn_cell = keys(data)
-    sn = char(sn_cell);
+sns = keys(data);
+for i = 1:length(sns)
+    sn = sns{i};
     d = data(sn);
     d.dn = d.dn + offsets(i);
     data(sn) = d;

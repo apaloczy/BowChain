@@ -24,6 +24,7 @@ config = get_config(cruise,varargin{:}); % get processing options
 for i = 1:length(config)
     %% Preprocessing
     cfg = config(i);
+    disp(sprintf('Processing deployment: %s',cfg.name));
     cfg = preproc_setup(cfg);   % set up filepaths & parse funcs
     cfg = preproc_raw2mat(cfg); % convert raw data to .mat files
 
@@ -40,5 +41,6 @@ for i = 1:length(config)
     grid(i) = proc_pressure_cal(grid(i),cfg);
     grid(i) = proc_chain_model(grid(i),cfg);
     grid(i) = post_chain_hook(grid(i),cfg);
+    grid(i).info.config = cfg;
 end
 
