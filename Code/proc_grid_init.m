@@ -26,13 +26,14 @@ for sn_cell = keys(config.sensors)
     pos_ind = config.sensors(sn).pos_ind;
     for f = 1:length(flds)
         if isfield(data(sn),flds{f})
+            [~,idx] = unique(data(sn).dn);
             grid.(flds{f})(pos_ind,:) = ...
-                interp1(data(sn).dn,data(sn).(flds{f}),grid.dn,...
+                interp1(data(sn).dn(idx),data(sn).(flds{f})(idx),grid.dn,...
                         interp_method);
         end
     end
     grid.pos(pos_ind,:) = config.sensors(sn).pos;
 end
 
-grid.info = {};
+grid.info = struct();
 
