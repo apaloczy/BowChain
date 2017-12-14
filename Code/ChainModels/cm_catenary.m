@@ -16,17 +16,21 @@ opts = optimset('display','off'); % to reduce the verbosity of lsqnonlin
 
 disp('Computing catenary chain shapes. This may take some time.')
 k = 0.1; % initial guess
+grid.info.catenary_param = nan*grid.dn;
 for i = 1:length(grid.dn)
     if mod(i,floor(length(grid.dn)/50))==0
         fprintf('.')
     end
     % Compute the catenary parameter that minimizes the difference between true
     % depth and catenary-computed depth as a function of along-chain position.
-    z = grid.p(:,i);
-    minfunc =@(k) z(~isnan(z)) - l2z(grid.pos(~isnan(z)),k);
-    k = lsqnonlin(minfunc,k,0.1,5,opts); % use previous solution as initial guess
+    hasp = ~isnan(grid.p(:,i));
+    z = grid.p(hasp,i);
+    l = grid.pos(hasp);
+    minfunc =@(k) z - l2z(l,k);
+    k = lsqnonlin(minfunc,k,0.1,100,opts); % use previous solution as initial guess
     grid.z(:,i) = -l2z(grid.pos,k);
     grid.x(:,i) = -z2x(grid.z(:,i),k);
+    grid.info.catenary_param(i) = k;
 end
-grid.x = grid.x - repmat(grid.x(1,:),length(grid.pos),1);
+grid.x = grid.x - repmat(grid.x(1,:),size(grid.x,1),1);
 fprintf('\nDone!\n')
