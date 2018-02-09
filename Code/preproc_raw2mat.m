@@ -3,15 +3,14 @@ function config = preproc_raw2mat(config)
 
 disp('Converting raw data to .mat files...')
 
-for sn_cell = keys(config.sensors)
-    sn = char(sn_cell);
-    [~,fname,fext] = fileparts(config.sensors(sn).file_raw);
-    if ~exist(config.sensors(sn).file_mat)
+for i = 1:length(config.sensors)
+    [~,fname,fext] = fileparts(config.sensors(i).file_raw);
+    if ~exist(config.sensors(i).file_mat)
         disp(['  ' fname fext ' --> ' fname '.mat'])
-        data = feval(config.sensors(sn).parse_func,...
-                     config.sensors(sn).file_raw);
+        data = feval(config.sensors(i).parse_func,...
+                     config.sensors(i).file_raw);
         data.sn = sn;
-        save(config.sensors(sn).file_mat,'-struct','data');
+        save(config.sensors(i).file_mat,'-struct','data');
     else
         disp(['  ' fname '.mat' ' already exists'])
     end

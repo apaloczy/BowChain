@@ -12,8 +12,8 @@ for f = 1:length(flds)
 end
 
 % Subsample/interpolate all data onto intermediate time base
-for sn_cell = keys(config.sensors)
-    sn = char(sn_cell);
+for i = 1:N
+    sn = config.sensors(i).sn;
     % Determine interpolation method based on sampling period
     perd_sens = nanmean(diff(data(sn).dn));
     if perd_sens <= perd_base
@@ -23,16 +23,17 @@ for sn_cell = keys(config.sensors)
     end
 
     % Interpolate data onto base_time
-    pos_ind = config.sensors(sn).pos_ind;
     for f = 1:length(flds)
         if isfield(data(sn),flds{f})
             [~,idx] = unique(data(sn).dn);
-            grid.(flds{f})(pos_ind,:) = ...
-                interp1(data(sn).dn(idx),data(sn).(flds{f})(idx),grid.dn,...
+            grid.(flds{f})(i,:) = ...
+                interp1(data(sn).dn(idx) ,...
+                        data(sn).(flds{f})(idx) ,...
+                        grid.dn ,...
                         interp_method);
         end
     end
-    grid.pos(pos_ind,:) = config.sensors(sn).pos;
+    grid.pos(i,:) = config.sensors(i).pos;
 end
 
 grid.info = struct();
