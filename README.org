@@ -1,5 +1,6 @@
 #+TITLE: BowChain
 #+AUTHOR: Dylan Winters
+#+OPTIONS: toc:2
 
 * Overview
 Process a bow chain dataset using =BowChain_master(cruiseName,deploymentName)=.
