@@ -50,6 +50,52 @@ Each deployment is processed sequentially with the following steps:
      adds an ~x~ and ~z~ field to the gridded data structure.
       
 
+
+* Setup
+
+** BowChain
+
+Clone the git repository:
+
+#+BEGIN_SRC sh
+git clone https://github.com/dswinters/BowChain.git
+#+END_SRC
+
+Copy the ~user_directories.m.example~ file to ~user_directories.m~:
+#+BEGIN_SRC sh
+cd BowChain/Code
+cp user_directories.m.example user_directores.m
+#+END_SRC
+
+~user_directories.m~ is not tracked in the repository. This allows the user to
+maintain a personal list of cruise data locations (local folders, remote
+directories, external volumes, etc.) without needing to modify configuration
+files.
+
+
+** RSKOpen/mksqlite
+
+/Note: If you've successfully used ~RSKopen~ previously, you can skip this step./
+
+This code uses RBR's ~RSKopen~ code for reading RBR datafiles. ~RSKopen~ is included in the ~BowChain~ repository, but requires a working version of ~mksqlite~, a MATLAB interface for ~sqlite~. 
+
+First clone the ~mksqlite~ repository:
+
+#+BEGIN_SRC sh
+git clone https://github.com/AndreasMartin72/mksqlite.git
+#+END_SRC
+
+Compiling ~mksqlite~ may take some fiddling. I had success with gcc-4.8 after making the following change to ~buildit.m~:
+
+#+BEGIN_SRC diff
+- mexargs = ' CFLAGS="\$CFLAGS" CXXFLAGS="\$CXXFLAGS std=gnu++0x" ';
++ mexargs = ' CXX="g++-4.8" GCC="gcc-4.8" CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" ';
+#+END_SRC
+
+After this, ~buildit~ completes successfully and creates ~mksqlite.mexa64~ or similar. Put this on your MATLAB path.
+
+
+
 * Configuration
 
 ** Deployment configuration

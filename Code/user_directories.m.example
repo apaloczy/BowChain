@@ -9,5 +9,10 @@ switch cruise
   case 'CANAPE'
     d = fullfile(getenv('DATA'), 'OSU_Thermistors/');
   case 'InnerShelf'
-    d = '/media/dylan/dw256/Data/inner_shelf/bow_chain/';
+    switch computer('arch')
+      case 'glnxa64' % if on linux
+        d = '/media/dylan/dw256/Data/inner_shelf/bow_chain/';
+      case 'maci64' % OS X
+        d = fullfile(getenv('DATA'),'inner_shelf/bow_chain/');
+    end
 end
