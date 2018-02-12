@@ -1,5 +1,6 @@
 function config = config_CANAPE()
-dir_base = fullfile(getenv('DATA'), 'OSU_Thermistors/');
+
+dir_base = user_directories('CANAPE');
 
 i = 1;
 config(i).name = 'T1';

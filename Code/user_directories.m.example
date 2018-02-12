@@ -1,0 +1,13 @@
+% User-specific directores. Use this file as a template for 
+function d = user_directories(cruise)
+
+switch cruise
+  case 'ArcticMix'
+    d = [getenv('HOME') '/OSU/BowChain/Sources/Arctic_bowchain/RawData/'];
+  case 'ASIRI_2015'
+    d = fullfile(getenv('DATA'), 'BowChain/ASIRI_2015/raw/');
+  case 'CANAPE'
+    d = fullfile(getenv('DATA'), 'OSU_Thermistors/');
+  case 'InnerShelf'
+    d = '/media/dylan/dw256/Data/inner_shelf/bow_chain/';
+end

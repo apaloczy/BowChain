@@ -1,7 +1,7 @@
 function config = config_ArcticMix()
 % Repository of bowchain configurations from the ArcticMix Cruise.
 
-dir_base = [getenv('HOME') '/OSU/BowChain/Sources/Arctic_bowchain/RawData/'];
+dir_base = user_directories('ArcticMix');
 % dir_base = 'Arctic/ArcticMix/bowchain/';
 
 %% Deployment configuration

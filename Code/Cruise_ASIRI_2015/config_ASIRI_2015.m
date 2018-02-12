@@ -1,7 +1,7 @@
 function config = config_ASIRI_2015()
 
 %% Cruise-wide options
-dir_raw = fullfile(getenv('DATA'), 'BowChain/ASIRI_2015/raw/');
+dir_raw = user_directories('ASIRI_2015');
 
 %% Deployment setup
 config(1).name = 'Deploy01';

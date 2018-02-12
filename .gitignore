@@ -1,2 +1,4 @@
 **/.DS_Store
-private/
+**/private/
+**/private*
+user_directories.m
