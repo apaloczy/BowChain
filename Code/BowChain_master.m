@@ -26,11 +26,10 @@ for i = 1:length(config)
     cfg = config(i);
     disp(sprintf('Processing deployment: %s',cfg.name));
     cfg = preproc_setup(cfg);   % set up filepaths & parse funcs
-    cfg = preproc_raw2mat(cfg); % convert raw data to .mat files
+    preproc_raw2mat(cfg); % convert raw data to .mat files if necessary
+    data = proc_load_mat(cfg); % load raw data
 
     %% Main processing
-    % 1) Load the data that we've already converted to .mat files
-    data = proc_load_mat(cfg);
     [data, cfg] = post_load_hook(data,cfg);
     % 2) Sample all data onto nominal time base
     grid(i) = proc_grid_init(data,cfg);

@@ -8,13 +8,16 @@ for i = 2:length(offsets)
 end
 offsets = cumsum(offsets);
 
-sns = keys(data);
-for i = 1:length(sns)
-    sn = sns{i};
-    d = data(sn);
-    d.dn = d.dn + offsets(i);
-    data(sn) = d;
-    disp(sprintf('Removed %.1f second offset from %s',offsets(i)*86400,sn));
+for i = 1:length(data)
+    data{i}.dn = data{i}.dn + offsets(i);
+    disp(sprintf('Removed %.1f second offset from %s',offsets(i)*86400,data{i}.sn));
     close all
 end
+
+grid.info.time_offsets = sprintf(...
+    ['Time offsets determined using "cohere" method'...
+     ' on interval %s to %s'],...
+    datestr(cfg.cohere_interval(1)),...
+    datestr(cfg.cohere_interval(2)));
+
 

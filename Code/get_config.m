@@ -1,3 +1,8 @@
+%% config = get_config(cruise,varargin)
+%
+% Run the cruise's configuration file, fill with default values where necessary,
+% and scan for missing configuration options
+
 function config = get_config(cruise,varargin)
 
 %% Setup
@@ -8,9 +13,23 @@ if exist(cruise_file) == 2
 else
     error('Cannot find file: %s.m',cruise_file)
 end
+flds = fields(config);
 
 % Fill default options
+defaults = config_default();
 config = fill_defaults(config,config_default());
+
+% Notify about options that were filled
+newflds = setdiff(fields(config),flds);
+for i = 1:length(newflds)
+    if isnumeric(defaults.(newflds{i}));
+        fldfmt = '%.2f';
+    else
+        fldfmt = '%s';
+    end
+    msgfmt = ['Field "%s" not specified. Using default value: ' fldfmt];
+    disp(sprintf(msgfmt,newflds{i},defaults.(newflds{i})));
+end
 
 % Limit to deployment(s), if specified
 if nargin > 1
@@ -21,24 +40,49 @@ if nargin > 1
 end
 
 %% Check for missing options
-opts = {'freq_base';
-        'dir_raw';
-        'dn_range';
-        'sensor_sn';
-        'sensor_pos'};
-desc = {'Desired frequency for gridded data';
-        'Path to deployment''s raw data directory';
-        'Desired datenum range for gridded data';
-        'Cell array of sensor serial numbers (as strings)';
-        'Vector of sensor positions (m)'};
+opts = {...
+    % Required base options: 
+    'name';
+    'freq_base';
+    'dir_raw';
+    'dn_range';
+    'sensor_sn';
+    'sensor_pos';
+    % Requried additional fields for certain options
+    %   {option, value, required option}
+    {'time_offset_method','cohere','cohere_interval'};
+    {'time_offset_method','known_drift','time_synched'};
+    {'time_offset_method','known_drift','drift'};
+       };
+
+desc = {'deployment name';
+        'desired frequency for gridded data';
+        'path to deployment''s raw data directory';
+        'desired datenum range for gridded data';
+        'cell array of sensor serial numbers (as strings)';
+        'vector of sensor positions (m)';
+        'datenum range for determining time offsets';
+        'time that clocks were synched (datenum)';
+        'measured clock drifts (seconds)';
+       };
 msg = '';
 n_missing = 0;
 for d = 1:length(config)
     for i = 1:length(opts)
-        if ~isfield(config(d),opts{i}) || isempty(config(d).(opts{i}))
-            msg = sprintf('%s\n  %s: %s (%s)',msg,config(d).name,opts{i},desc{i});
-            n_missing = n_missing + 1;
-        end
+        if ~iscell(opts{i});
+            if ~isfield(config(d),opts{i}) || isempty(config(d).(opts{i}))
+                msg = sprintf('%s\n  %s: %s (%s)',msg,config(d).name,opts{i},desc{i});
+                n_missing = n_missing + 1;
+            end
+        else
+            if isfield(config(d),opts{i}{1}) && ...
+                    strcmp(config(d).(opts{i}{1}),opts{i}{2}) && ...
+                    ~isfield(config(d),opts{i}{3})
+                msg = sprintf('%s\n  %s: %s "%s" requires config field: "%s" (%s)',...
+                              msg,config(d).name,opts{i}{1},opts{i}{2},opts{i}{3},desc{i});
+                n_missing = n_missing + 1;
+            end
+        end                
     end
 end
 if n_missing > 0

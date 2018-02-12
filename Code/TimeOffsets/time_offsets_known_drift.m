@@ -9,3 +9,7 @@ for i = 1:length(cfg.sensor_sn)
     data(cfg.sensor_sn{i}) = d;
     disp(sprintf('Removed %d second clock drift from %s',cfg.drift(i),cfg.sensor_sn{i}));
 end
+
+grid.info.time_offsets = ...
+    'Clocks corrected using known synch time and measured drift';
+
