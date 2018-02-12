@@ -6,47 +6,48 @@ Process a bow chain dataset using =BowChain_master(cruiseName,deploymentName)=.
 
 ~BowChain_master~ is structured as follows:
 
-- Cruise and deployment configuration
+** Cruise and deployment configuration
 
-  1) The cruise's configuration function is called using ~get_config.m~. This
-    fills the cruise's config structure with global default options from
-    ~config_default.m~ and checks deployments for missing options.
+The cruise's configuration function is called using ~get_config.m~. This fills
+the cruise's config structure with global default options from
+~config_default.m~ and checks deployments for missing options.
 
-- Deployment processing
+** Deployment processing
    
-  Each deployment is processed sequentially with the following steps:
+Each deployment is processed sequentially with the following steps:
 
-  1) Sensor setup (~preproc_setup.m~)
-     - The user-defined sensor serial numbers are passed into
-       ~get_sensor_info.m~. This function acts as a database containing
-       processing instructions for different sensor types.
-     - If the instrument type is known and an associated raw datafile is found,
-       the sensor gets an entry in ~config.sensors~ containing parsing
-       instructions and an output .mat file name.
+1) Sensor setup (~preproc_setup.m~)
+   - The user-defined sensor serial numbers are passed into
+     ~get_sensor_info.m~. This function acts as a database containing
+     processing instructions for different sensor types.
+   - If the instrument type is known and an associated raw datafile is found,
+     the sensor gets an entry in ~config.sensors~ containing parsing
+     instructions and an output .mat file name.
 
-  2) File conversion (~preproc_raw2mat.m~)
+2) File conversion (~preproc_raw2mat.m~)
 
-     Using the information gathered in ~preproc_setup~, each sensor's raw
-       datafiles are convered to a .mat format. This step is skipped if .mat
-       files already exist.
+   - Using the information gathered in ~preproc_setup~, each sensor's raw
+     datafiles are convered to a .mat format. This step is skipped if .mat
+     files already exist.
 
-  3) Load data
-     - Each sensor's .mat file is loaded using ~proc_load_mat.m~. This creates a
-       ~data~ cell array with raw sensor data in each cell.
+3) Load data
 
-  4) Sample data onto a uniformly-spaced time base using ~proc_grid_init~.
+   - Each sensor's .mat file is loaded using ~proc_load_mat.m~. This creates a
+     ~data~ cell array with raw sensor data in each cell.
 
-  5) Calibrate sensor clocks and pressure sensors
-     - Clocks are calibrated using ~proc_time_offsets.m~. The
-       ~config.time_offset_method~ and related fields control what this function
-       does.
-     - Pressure sensors are calibrated with ~proc_pressure_cal~ if the
-       ~config.zero_pressure_interval~ field is defined.
+4) Sample data onto a uniformly-spaced time base using ~proc_grid_init~.
 
-  6) Apply positional offsets to measurements
-     - ~proc_chain_model.m~ uses known instrument positions and measured
-       pressure data to compute positional offsets for each measurement. This
-       adds an ~x~ and ~z~ field to the gridded data structure.
+5) Calibrate sensor clocks and pressure sensors
+   - Clocks are calibrated using ~proc_time_offsets.m~. The
+     ~config.time_offset_method~ and related fields control what this function
+     does.
+   - Pressure sensors are calibrated with ~proc_pressure_cal~ if the
+     ~config.zero_pressure_interval~ field is defined.
+
+6) Apply positional offsets to measurements
+   - ~proc_chain_model.m~ uses known instrument positions and measured
+     pressure data to compute positional offsets for each measurement. This
+     adds an ~x~ and ~z~ field to the gridded data structure.
       
 
 * Configuration
