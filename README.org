@@ -4,7 +4,7 @@
 * Overview
 Process a bow chain dataset using =BowChain_master(cruiseName,deploymentName)=.
 
-~BowChain_master~ is structured as follows:
+~BowChain_master.m~ is structured as follows:
 
 ** Cruise and deployment configuration
 
@@ -76,35 +76,28 @@ shown below:
   config(1).sensor_pos = [0 1 2 3 4 5 6 7 8 9 11 12 13 14 14.5 15 16 17 18 19];
 #+END_SRC
 
-*** Full table of deployment configuration options
+*** Deployment configuration options
 
-- Base parameters
-
+Base parameters
 | Field                         | Description                                      | Default                 |
 |-------------------------------+--------------------------------------------------+-------------------------|
-| *config.name                  | deployment name                                  |                         |
-| *config.dir.raw               | raw deployment data directory                    |                         |
-| *config.sensor_sn             | cell array of sensor serial number strings       |                         |
-| *config.sensor_pos            | vector of sensor positions                       |                         |
-| *config.dn_range              | time interval for deployment                     |                         |
+| config.name                   | deployment name                                  |                         |
+| config.dir.raw                | raw deployment data directory                    |                         |
+| config.sensor_sn              | cell array of sensor serial number strings       |                         |
+| config.sensor_pos             | vector of sensor positions                       |                         |
+| config.dn_range               | time interval for deployment                     |                         |
 | config.freq_base              | frequency of gridded output data                 | 2 Hz                    |
 | config.time_offset.method     | method for sensor clock corrections              | 'none'                  |
 | config.zero_pressure_interval | time interval for zero-pressure calibration      | no pressure calibration |
 | config.chain_model            | model to use for instrument position corrections | 'cm_straight'           |
 
-\* indicates a required field with no default value. These must be specified in
-the cruise's config file.
-
-- Additional parameters
-
-  Some configuration options require additional fields in the ~config~ structure:
-
-  | Field                     | Value         | Additional Required Field | Description                                 |
-  |---------------------------+---------------+---------------------------+---------------------------------------------|
-  | config.time_offset_method | 'cohere'      | config.cohere_interval    | Interval to use for clock calibration       |
-  | config.time_offset_method | 'known_drift' | config.time_synched       | Time (datenum,UTC) that clocks were synched |
-  | config.time_offset_method | 'known_drift' | config.drift              | Measured clock drift on recovery            |
-  
+Some configuration options require additional fields in the ~config~ structure:
+| Field                     | Value         | Additional Required Field | Description                                 |
+|---------------------------+---------------+---------------------------+---------------------------------------------|
+| config.time_offset_method | 'cohere'      | config.cohere_interval    | Interval to use for clock calibration       |
+| config.time_offset_method | 'known_drift' | config.time_synched       | Time (datenum,UTC) that clocks were synched |
+| config.time_offset_method | 'known_drift' | config.drift              | Measured clock drift on recovery            |
+ 
 *** Locating instrument data
 
 Data organization might change between cruises, but is likely consistent for
