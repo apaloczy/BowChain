@@ -10,52 +10,60 @@ Process a all bow chain deployments from a cruise with
 
 ** Cruise and deployment configuration
 
-The cruise's configuration function is called using ~get_config.m~. This fills
+The cruise's configuration function is called using [[file:Code/get_config.m][get_config.m]]. This fills
 the cruise's config structure with global default options from
-~config_default.m~ and checks deployments for missing options.
+[[file:Code/config_default.m][config_default.m]] and checks deployments for missing options.
 
 ** Deployment processing
    
 Each deployment is processed sequentially with the following steps:
 
-1) Sensor setup (~preproc_setup.m~)
+1) Sensor setup ([[file:Code/preproc_setup.m][preproc_setup.m]])
    - The user-defined sensor serial numbers are passed into
-     ~get_sensor_info.m~. This function acts as a database containing
+     [[file:Code/get_sensor_info.m][get_sensor_info.m]]. This function acts as a database containing
      processing instructions for different sensor types.
    - If the instrument type is known and an associated raw datafile is found,
      the sensor gets an entry in ~config.sensors~ containing parsing
      instructions and an output .mat file name.
 
-2) File conversion (~preproc_raw2mat.m~)
+2) File conversion ([[file:Code/preproc_raw2mat.m][preproc_raw2mat.m]])
 
-   - Using the information gathered in ~preproc_setup.m~, each sensor's raw
+   - Using the information gathered in [[file:Code/preproc_setup.m][preproc_setup.m]], each sensor's raw
      datafiles are convered to a .mat format. This step is skipped if .mat
      files already exist.
 
 3) Load data
 
-   - Each sensor's .mat file is loaded using ~proc_load_mat.m~. This creates a
+   - Each sensor's .mat file is loaded using [[file:Code/proc_load_mat.m][proc_load_mat.m]]. This creates a
      ~data~ cell array with raw sensor data in each cell.
 
-4) Sample data onto a uniformly-spaced time base using ~proc_grid_init~.
+4) Sample data onto a uniformly-spaced time base using [[file:Code/proc_grid_init.m][proc_grid_init.m]].
+   - This initializes the ~grided~ data structure that is passed through the
+     next several functions.
+   - /If any customizations add additional fields to the ~gridded~ structure,
+     they must be initialized in this function./ MATLAB will throw an error if a
+     function tries to add fields to a single entry of a non-scalar struct
+     array. In other words, ~gridded(i) = some_function(gridded(i))~ will not
+     work if ~some_function~ tries to add non-initialized fields to
+     ~gridded(i)~.
 
 5) Calibrate sensor clocks and pressure sensors
-   - Clocks are calibrated using ~proc_time_offsets.m~. The
+   - Clocks are calibrated using [[file:Code/proc_time_offsets.m][proc_time_offsets.m]]. The
      ~config.time_offset_method~ and related fields control what this function
      does.
-   - Pressure sensors are calibrated with ~proc_pressure_cal.m~ if the
+   - Pressure sensors are calibrated with [[file:Code/proc_pressure_cal.m][proc_pressure_cal.m]] if the
      ~config.zero_pressure_interval~ field is defined.
    - Time and pressure offsets are applied to the raw data, and it is once again
-     sampled onto a uniformly-spaced time base using ~proc_grid_init.m~.
+     sampled onto a uniformly-spaced time base using [[file:Code/proc_grid_init.m][proc_grid_init.m]].
 
 
 6) Compute positional offsets with a chain shape model
-   - ~proc_chain_model.m~ uses known instrument positions and measured
-     pressure data to compute positional offsets for each measurement. This
-     adds an ~x~ and ~z~ field to the gridded data structure.
+   - [[file:Code/proc_chain_model.m][proc_chain_model.m]] uses known instrument positions and measured pressure
+     data to compute positional offsets for each measurement. This fills the ~x~
+     and ~z~ fields of the gridded data structure.
 
 7) Apply positional offsets to GPS data
-   - ~proc_gps.m~ converts positional offsets to arclength on the WGS84
+   - [[file:Code/proc_gps.m][proc_gps.m]] converts positional offsets to arclength on the WGS84
      ellipsoid and adds them to the ship's position in the direction of the
      ship's heading.
 
