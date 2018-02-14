@@ -40,6 +40,7 @@ for i = 1:length(config)
     gridded(i) = proc_pressure_cal(gridded(i),cfg);
     gridded(i) = proc_chain_model(gridded(i),cfg);
     gridded(i) = post_chain_hook(gridded(i),cfg);
+    gridded(i) = proc_gps(gridded(i),cfg);
     gridded(i).info.config = cfg;
 end
 

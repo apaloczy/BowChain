@@ -136,6 +136,7 @@ Base parameters
 | config.time_offset.method     | method for sensor clock corrections              | 'none'                  |
 | config.zero_pressure_interval | time interval for zero-pressure calibration      | no pressure calibration |
 | config.chain_model            | model to use for instrument position corrections | 'cm_straight'           |
+| config.file_gps               | location of GPS data file                        |                         |
 
 Some configuration options require additional fields in the ~config~ structure:
 | Field                     | Value         | Additional Required Field | Description                                 |
