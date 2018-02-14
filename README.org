@@ -26,7 +26,7 @@ Each deployment is processed sequentially with the following steps:
 
 2) File conversion (~preproc_raw2mat.m~)
 
-   - Using the information gathered in ~preproc_setup~, each sensor's raw
+   - Using the information gathered in ~preproc_setup.m~, each sensor's raw
      datafiles are convered to a .mat format. This step is skipped if .mat
      files already exist.
 
@@ -41,14 +41,21 @@ Each deployment is processed sequentially with the following steps:
    - Clocks are calibrated using ~proc_time_offsets.m~. The
      ~config.time_offset_method~ and related fields control what this function
      does.
-   - Pressure sensors are calibrated with ~proc_pressure_cal~ if the
+   - Pressure sensors are calibrated with ~proc_pressure_cal.m~ if the
      ~config.zero_pressure_interval~ field is defined.
+   - Time and pressure offsets are applied to the raw data, and it is once again
+     sampled onto a uniformly-spaced time base using ~proc_grid_init.m~.
 
-6) Apply positional offsets to measurements
+
+6) Compute positional offsets with a chain shape model
    - ~proc_chain_model.m~ uses known instrument positions and measured
      pressure data to compute positional offsets for each measurement. This
      adds an ~x~ and ~z~ field to the gridded data structure.
-      
+
+7) Apply positional offsets to GPS data
+   - ~proc_gps.m~ converts positional offsets to arclength on the WGS84
+     ellipsoid and adds them to the ship's position in the direction of the
+     ship's heading.
 
 
 * Setup
