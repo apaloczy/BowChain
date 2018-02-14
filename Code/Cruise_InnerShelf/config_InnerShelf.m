@@ -23,6 +23,7 @@ for i = 1:10
     [~,sensor_type] = xlsread(logsheet,type_idx);
     config(i).sensor_sn = cell(size(sensor_sn));
     config(i).sensor_type = sensor_type;
+    config(i).chain_model = 'cm_catenary';
 
     for s = 1:length(sensor_sn)
         switch lower(sensor_type{s})
