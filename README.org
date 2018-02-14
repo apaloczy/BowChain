@@ -56,7 +56,6 @@ Each deployment is processed sequentially with the following steps:
    - Time and pressure offsets are applied to the raw data, and it is once again
      sampled onto a uniformly-spaced time base using [[file:Code/proc_grid_init.m][proc_grid_init.m]].
 
-
 6) Compute positional offsets with a chain shape model
    - [[file:Code/proc_chain_model.m][proc_chain_model.m]] uses known instrument positions and measured pressure
      data to compute positional offsets for each measurement. This fills the ~x~
@@ -66,7 +65,6 @@ Each deployment is processed sequentially with the following steps:
    - [[file:Code/proc_gps.m][proc_gps.m]] converts positional offsets to arclength on the WGS84
      ellipsoid and adds them to the ship's position in the direction of the
      ship's heading.
-
 
 * Setup
 
@@ -81,7 +79,7 @@ git clone https://github.com/dswinters/BowChain.git
 Copy the ~user_directories.m.example~ file to ~user_directories.m~:
 #+BEGIN_SRC sh
 cd BowChain/Code
-cp user_directories.m.example user_directores.m
+cp user_directories.m.example user_directories.m
 #+END_SRC
 
 ~user_directories.m~ is not tracked in the repository. This allows the user to
