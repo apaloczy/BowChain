@@ -1,8 +1,8 @@
-grid = rmfield(grid,'p');
-grid = rmfield(grid,'s');
-for i = 1:length(grid);
-    grid(i).name = sprintf('T%d',i)
-    % grid(i).pos = grid(i).pos(:,1);
+gridded = rmfield(gridded,'p');
+gridded = rmfield(gridded,'s');
+for i = 1:length(gridded);
+    gridded(i).name = sprintf('T%d',i)
+    % gridded(i).pos = gridded(i).pos(:,1);
 end
 
 >> data

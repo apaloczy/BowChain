@@ -1,14 +1,14 @@
-function grid = proc_grid_init(data,config)
+function gridded = proc_grid_init(data,config)
 
 N = length(config.sensors);
 perd_base =1/(config.freq_base*86400);
 
-%% Initialize grid variables
-grid = struct();
-grid.dn = (config.dn_range(1)-0.001):perd_base:(config.dn_range(2)+0.001);
+%% Initialize gridded variables
+gridded = struct();
+gridded.dn = (config.dn_range(1)-0.001):perd_base:(config.dn_range(2)+0.001);
 flds = {'t','p','s','x','z'};
 for f = 1:length(flds)
-    grid.(flds{f}) = nan(N,length(grid.dn));
+    gridded.(flds{f}) = nan(N,length(gridded.dn));
 end
 
 % Subsample/interpolate all data onto intermediate time base
@@ -25,13 +25,13 @@ for i = 1:length(data)
     for f = 1:length(flds)
         if isfield(data{i},flds{f})
             [~,idx] = unique(data{i}.dn);
-            grid.(flds{f})(i,:) = ...
-                interp1(data{i}.dn(idx),data{i}.(flds{f})(idx),grid.dn,...
+            gridded.(flds{f})(i,:) = ...
+                interp1(data{i}.dn(idx),data{i}.(flds{f})(idx),gridded.dn,...
                         interp_method);
         end
     end
-    grid.pos(i,:) = config.sensors(i).pos;
+    gridded.pos(i,:) = config.sensors(i).pos;
 end
 
-grid.info = struct();
+gridded.info = struct();
 

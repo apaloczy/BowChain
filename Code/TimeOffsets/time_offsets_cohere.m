@@ -1,10 +1,10 @@
-function data = time_offsets_cohere(grid,data,cfg);
+function data = time_offsets_cohere(gridded,data,cfg);
 
-offsets = zeros(size(grid.t,1),1);
+offsets = zeros(size(gridded.t,1),1);
 for i = 2:length(offsets)
   % Get time offset
-  offsets(i) = determine_t_offset(grid.dn',grid.t(i-1,:)',...
-                                  grid.dn',grid.t(i,:)',cfg.cohere_interval);
+  offsets(i) = determine_t_offset(gridded.dn',gridded.t(i-1,:)',...
+                                  gridded.dn',gridded.t(i,:)',cfg.cohere_interval);
 end
 offsets = cumsum(offsets);
 
@@ -14,7 +14,7 @@ for i = 1:length(data)
     close all
 end
 
-grid.info.time_offsets = sprintf(...
+gridded.info.time_offsets = sprintf(...
     ['Time offsets determined using "cohere" method'...
      ' on interval %s to %s'],...
     datestr(cfg.cohere_interval(1)),...

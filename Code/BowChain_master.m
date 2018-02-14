@@ -4,12 +4,12 @@
 %         deployments - (optional) A string, or cell array of strings, specifying
 %                       which deployment(s) to process. By default, all deployments
 %                       configured in the cruise's config file are processed.
-% Outputs: grid - gridded dataset (cell array). 
+% Outputs: gridded - gridded dataset (cell array). 
 % 
 % Author: Dylan Winters
 
 
-function grid = BowChain_master(cruise,varargin)
+function gridded = BowChain_master(cruise,varargin)
 
 %% Setup
 % Add dependencies to path
@@ -32,14 +32,14 @@ for i = 1:length(config)
     %% Main processing
     [data, cfg] = post_load_hook(data,cfg);
     % 2) Sample all data onto nominal time base
-    grid(i) = proc_grid_init(data,cfg);
-    grid(i) = post_grid_hook(grid(i),cfg);
+    gridded(i) = proc_grid_init(data,cfg);
+    gridded(i) = post_grid_hook(gridded(i),cfg);
     % 3) Compute and/or apply time offsets and resample
-    grid(i) = proc_time_offsets(grid(i),data,cfg);
+    gridded(i) = proc_time_offsets(gridded(i),data,cfg);
     % 4) Compute positional offsets using chain shape model
-    grid(i) = proc_pressure_cal(grid(i),cfg);
-    grid(i) = proc_chain_model(grid(i),cfg);
-    grid(i) = post_chain_hook(grid(i),cfg);
-    grid(i).info.config = cfg;
+    gridded(i) = proc_pressure_cal(gridded(i),cfg);
+    gridded(i) = proc_chain_model(gridded(i),cfg);
+    gridded(i) = post_chain_hook(gridded(i),cfg);
+    gridded(i).info.config = cfg;
 end
 
