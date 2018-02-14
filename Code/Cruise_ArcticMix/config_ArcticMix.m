@@ -16,6 +16,8 @@ config(i).sensor_sn = {'00451';'100154';'060281';'00407';'100153';...
   '00445';'100157';'00422';'100159';'00442';'100155';'00372';'03134';...
   '100156'};
 config(i).sensor_pos = [0 2 3 4 6 7 8 9 11 13 15 17 18 19];
+% config(i).file_gps = '???';   
+config(i).chain_model = 'cm_catenary';
 
 
 % Mackenzie Canyon
