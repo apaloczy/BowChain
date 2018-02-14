@@ -17,8 +17,10 @@ opts = optimset('display','off'); % to reduce the verbosity of lsqnonlin
 disp('Computing catenary chain shapes. This may take some time.')
 k = 0.1; % initial guess
 gridded.info.catenary_param = nan*gridded.dn;
+nprog = 50;
+disp(repmat('.',1,nprog))
 for i = 1:length(gridded.dn)
-    if mod(i,floor(length(gridded.dn)/50))==0
+    if mod(i,floor(length(gridded.dn)/nprog))==0
         fprintf('.')
     end
     % Compute the catenary parameter that minimizes the difference between true
