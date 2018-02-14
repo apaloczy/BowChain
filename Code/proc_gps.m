@@ -25,5 +25,6 @@ if isfield(cfg,'file_gps')
     lon = repmat(lon,nsens,1);
 
     % Apply positional offsets in the direction of ship motion
-    [gridded.lat, gridded.lon] = reckon(lat,lon,gridded.x,h);
+    arc = distdim(gridded.x,'meters','degrees','earth'); % convert m to arclength
+    [gridded.lat, gridded.lon] = reckon(lat,lon,gridded.x,h); % apply arclength offset
 end
