@@ -21,6 +21,8 @@ addpath(genpath(['Cruise_' cruise])); % cruise-specific functions
 
 config = get_config(cruise,varargin{:}); % get processing options
 
+% test change
+
 for i = 1:length(config)
     %% Preprocessing
     cfg = config(i);
