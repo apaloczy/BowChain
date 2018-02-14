@@ -2,7 +2,9 @@
 #+AUTHOR: Dylan Winters
 
 * Overview
-Process a bow chain dataset using =BowChain_master(cruiseName,deploymentName)=.
+Process a all bow chain deployments from a cruise with
+=BowChain_master(cruiseName)=. Process a specific deployment with
+=BowChain_master(cruiseName,deploymentName)=.
 
 ~BowChain_master.m~ is structured as follows:
 
