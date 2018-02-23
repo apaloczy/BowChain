@@ -30,12 +30,11 @@ for i = 1:length(config)
     data = proc_load_mat(cfg); % load raw data
 
     %% Main processing
+    % 1) Any user-defined preprocessing
     [data, cfg] = post_load_hook(data,cfg);
-    % 2) Sample all data onto nominal time base
-    gridded(i) = proc_grid_init(data,cfg);
+    % 2) Compute time offsets and sample to uniform time-base
+    gridded(i) = proc_time_offsets(data,cfg);
     gridded(i) = post_grid_hook(gridded(i),cfg);
-    % 3) Compute and/or apply time offsets and resample
-    gridded(i) = proc_time_offsets(gridded(i),data,cfg);
     % 4) Compute positional offsets using chain shape model
     gridded(i) = proc_pressure_cal(gridded(i),cfg);
     gridded(i) = proc_chain_model(gridded(i),cfg);

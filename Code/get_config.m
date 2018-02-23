@@ -61,6 +61,8 @@ opts(5).name = 'sensor_sn';
 opts(6).name = 'sensor_pos';
 % Requried additional fields for certain options
 %   {option, value, required option}
+% e.g. if config.time_offset_method is 'cohere', then config.cohere_interval
+% must be set.
 opts(7).name = {'time_offset_method','cohere','cohere_interval'};
 opts(8).name = {'time_offset_method','known_drift','time_synched'};
 opts(9).name = {'time_offset_method','known_drift','drift'};
