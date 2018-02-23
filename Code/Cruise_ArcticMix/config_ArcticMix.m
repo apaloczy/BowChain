@@ -16,7 +16,7 @@ config(i).sensor_sn = {'00451';'100154';'060281';'00407';'100153';...
   '00445';'100157';'00422';'100159';'00442';'100155';'00372';'03134';...
   '100156'};
 config(i).sensor_pos = [0 2 3 4 6 7 8 9 11 13 15 17 18 19];
-config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 % config(i).chain_model = 'cm_catenary';
 config(i).chain_model = 'cm_straight';
 config(i).time_offset_method = 'cohere';
@@ -34,7 +34,7 @@ config(i).sensor_sn = {'00451';'100161';'100154';'060281';'00407';...
   '100160';'100153';'00445';'100157';'00422';'100159';'100158';'00442';...
   '100162';'100155';'00392';'00372';'100156'};
 config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 11 12 13 14 15 16 17 19];
-config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 
 
 % Mooring to Moving Sea Ice Edge
@@ -48,7 +48,7 @@ config(i).sensor_sn = {'00451';'100161';'100154';'060281';'00407';...
   '100162';'03253';'100155';'00392';'00372';'060280';'100156'};
 config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 11 12 13 14 14.5 15 16 17 ...
   18 19];
-config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 
 
 % Repeated MMP Section 1
@@ -62,7 +62,7 @@ config(i).sensor_sn = {'00451';'100161';'100154';'060281';'00407';...
   '100162';'03253';'100155';'00392';'00372';'060280';'100156'};
 config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 11 12 13 14 14.5 15 16 17 ...
   18 19];
-config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 
 % Repeated MMP Section 2
 i = 5;
@@ -75,7 +75,7 @@ config(i).sensor_sn = {'00451';'100161';'100154';'060281';'00407';...
   '100162';'03253';'100155';'00392';'00372';'060280';'100156'};
 config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 10 11 12 13 14 14.5 15 16 17 ...
   18 19];
-config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 
 
 % Small Boat During Coordinated Ice Edge Sampling
@@ -87,6 +87,7 @@ config(i).dn_range = datenum(['15-Sep-2015 18:32:32';...
 config(i).sensor_sn = {'00411';'100154';'012712';'100153';'00416';...
   '100162';'00418';'100155';'00421';'100159';'00448';'03253'};
 config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 10 11];
+config(i).file_gps = [dir_base 'SmallBoat_gps.mat'];
 
 
 % Sikuliaq During Coordinate Ice Edge Sampling
@@ -99,7 +100,7 @@ config(i).sensor_sn = {'00453';'00451';'100161';'00406';'060281';...
   '00407';'100160';'00381';'00445';'100157';'00422';'00446';'00423';...
   '100158';'00442';'00455';'00449';'00392';'00372';'100156'};
 config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20];
-config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 
 
 % Warm Core Eddy Sections
@@ -112,7 +113,7 @@ config(i).sensor_sn = {'00453';'100154';'100161';'00406';'060281';...
   '00407';'100160';'100153';'00445';'100157';'012712';'100162';'00423';...
   '100158';'100155';'00449';'100159';'00372';'060280';'100156'};
 config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 10 11 12 13 15 16 17 18 19 20];
-config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 
 
 % Bering Strait Sections
@@ -125,5 +126,5 @@ config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
 %   '100158';'00442';'100155';'00449';'100159';'00372';'060280';'100126'};
 % config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ...
 %   19 20];
-% config(i).file_gps = [dir_base 'Sikuliag_gps.mat'];
+% config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 
