@@ -1,11 +1,17 @@
-function gridded = proc_grid_init(data,config)
+function gridded = proc_grid_init(data,config,varargin)
 
 N = length(config.sensors);
 perd_base =1/(config.freq_base*86400);
+% Use a custom datenum range if specified
+if nargin > 2
+    dn_range = varargin{1};
+else
+    dn_range = config.dn_range;
+end
 
 %% Initialize gridded variables
 gridded = struct();
-gridded.dn = (config.dn_range(1)-0.001):perd_base:(config.dn_range(2)+0.001);
+gridded.dn = (dn_range(1)):perd_base:(dn_range(2));
 flds = {'t','p','s','x','z'};
 for f = 1:length(flds)
     gridded.(flds{f}) = nan(N,length(gridded.dn));

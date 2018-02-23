@@ -1,4 +1,4 @@
-function gridded = proc_time_offsets(gridded,data,cfg)
+function gridded = proc_time_offsets(data,cfg)
 
 switch cfg.time_offset_method
   case 'known_drift'
@@ -6,7 +6,11 @@ switch cfg.time_offset_method
     data = time_offsets_known_drift(data,cfg);
     gridded = proc_grid_init(data,cfg); % resample with offsets applied
   case 'cohere'
-    data = time_offsets_cohere(gridded,data,cfg);
+    % preliminarily grid data over cohere interval
+    pgrid = proc_grid_init(data,cfg,cfg.cohere_interval);
+    % compute and apply offsets to raw data
+    data = time_offsets_cohere(pgrid,data,cfg);
+    % resample over deployment time interval
     gridded = proc_grid_init(data,cfg);
   otherwise
     disp('No time offsets applied')
