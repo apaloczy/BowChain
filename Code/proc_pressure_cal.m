@@ -1,16 +1,19 @@
-function gridded = proc_pressure_cal(gridded,cfg)
+function data = proc_pressure_cal(data,cfg)
 
 if isfield(cfg,'zero_pressure_interval')
-    idx = gridded.dn>=cfg.zero_pressure_interval(1) & ...
-          gridded.dn<=cfg.zero_pressure_interval(2);
-    for i = 1:size(gridded.p,1)
-        if ~all(isnan(gridded.p(i,:)))
-            gridded.p(i,:) = gridded.p(i,:) - nanmean(gridded.p(i,idx));
+    % Sample onto pressure calibration interval
+    pcalgrid = proc_grid_init(data,cfg,cfg.zero_pressure_interval);
+    % Compute pressure offsets
+    disp(sprintf('Calibrating pressure data over interval: %s,%s',...
+                 datestr(cfg.zero_pressure_interval(1)),...
+                 datestr(cfg.zero_pressure_interval(2))));
+    for i = 1:length(pcalgrid.pos)
+        if isfield(data{i},'p') && ~all(isnan(pcalgrid.p(i,:)));
+            p0 = nanmean(pcalgrid.p(i,:));
+            data{i}.p = data{i}.p - p0;
+            disp(sprintf('Removed %.2fdbar pressure offset from %s',...
+                         p0,data{i}.sn))
         end
     end
-    gridded.info.pressure_cal = sprintf(...
-        ['Pressure zeroed on interval %s to %s'],...
-        datestr(cfg.zero_pressure_interval(1)),...
-        datestr(cfg.zero_pressure_interval(2)));
 end
 
