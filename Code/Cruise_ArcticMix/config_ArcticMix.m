@@ -20,9 +20,15 @@ config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 % config(i).chain_model = 'cm_catenary';
 config(i).chain_model = 'cm_straight';
 config(i).time_offset_method = 'cohere';
-config(i).cohere_interval = datenum(['03-Sep-2015 05:40';...
-  '03-Sep-2015 05:48']);
-% config(i).zero_pressure_interval = datenum([]);
+% config(i).cohere_interval = config(i).dn_range;
+config(i).cohere_interval = datenum(['01-Sep-2015 23:08:00';...
+  '03-Sep-2015 05:45:25']);
+% config(i).cohere_interval = datenum(['01-Sep-2015 23:08';...
+%   '01-Sep-2015 23:15']);
+% config(i).cohere_interval = datenum(['03-Sep-2015 05:39:00';...
+%   '03-Sep-2015 05:45:25']);
+config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
+  '03-Sep-2015 05:45']);
 % config.freq_base = 1; % [Hz]
 
 
@@ -57,7 +63,10 @@ config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 11 12 13 14 14.5 15 16 17 ...
 config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 config(i).chain_model = 'cm_straight';
 config(i).time_offset_method = 'cohere';
-config(i).cohere_interval = config(i).dn_range;
+config(i).cohere_interval = datenum(['09-Sep-2015 20:30';...
+  '09-Sep-2015 22:30']);
+config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
+  '09-Sep-2015 14:30']);
 
 
 % Repeated MMP Section 1
@@ -74,10 +83,10 @@ config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 11 12 13 14 14.5 15 16 17 ...
 config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 config(i).chain_model = 'cm_straight';
 config(i).time_offset_method = 'cohere';
-config(i).cohere_interval = datenum(['09-Sep-2015 21:22';...
-  '09-Sep-2015 21:31']); % Confirm times
-config(i).zero_pressure_interval = datenum(['10-Sep-2015 09:30';...
-  '10-Sep-2015 14:30']);
+config(i).cohere_interval = datenum(['09-Sep-2015 20:30';...
+  '09-Sep-2015 22:30']);
+config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
+  '09-Sep-2015 14:30']);
 
 % Repeated MMP Section 2
 i = 5;
