@@ -11,9 +11,3 @@ end
 
 % This model assumes no horizontal offsets
 gridded.x = zeros(size(gridded.x));
-
-
-% dl = diff(gridded.pos*ones(1,length(gridded.dn)));
-% dz = diff(gridded.z);
-% dl = max(dl,dz);
-
