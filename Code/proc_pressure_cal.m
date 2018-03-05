@@ -1,6 +1,6 @@
 function data = proc_pressure_cal(data,cfg)
 
-if isfield(cfg,'zero_pressure_interval')
+if isfield(cfg,'zero_pressure_interval') && ~isempty(cfg.zero_pressure_interval)
     % Sample onto pressure calibration interval
     pcalgrid = proc_grid_init(data,cfg,cfg.zero_pressure_interval);
     % Compute pressure offsets
