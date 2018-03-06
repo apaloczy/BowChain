@@ -168,3 +168,5 @@ config(i).chain_model = 'cm_straight';
 config(i).time_offset_method = 'cohere';
 config(i).cohere_interval = config(i).dn_range;
 
+% force re-parsing of raw data
+config = fill_defaults(config,struct('raw2mat',true));
