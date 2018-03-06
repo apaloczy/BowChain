@@ -21,6 +21,7 @@ for i = 2:length(offsets)
   legend('signal1','signal2','signal2 + offset')
   axis tight
   datetick('x','keeplimits')
+  pause(.01)
   end
 end
 offsets = cumsum(offsets);
