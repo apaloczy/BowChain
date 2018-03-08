@@ -22,8 +22,8 @@ config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 config(i).chain_model = 'cm_straight';
 
 config(i).time_offset_method = 'onestep';
-config(i).time_offset_interval = datenum(['01-Sep-2015 23:08';...
-  '01-Sep-2015 23:15']);
+config(i).time_offset_interval = datenum(['03-Sep-2015 05:38';...
+  '03-Sep-2015 05:48']);
 
 config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
   '03-Sep-2015 05:45']);
