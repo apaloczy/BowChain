@@ -7,8 +7,10 @@ for i = 2:length(offsets)
   % Shorten timeseries to remove nans
   signal1 = gridded.t(i-1,tinds);
   signal2 = gridded.t(i,tinds);
+  % Limit the lag to 5 min or segement length, whichever is smaller
+  wind = round(min([300/mean(diff(gridded.dn)*86400) length(signal1)/2]));
   % Get skill of lagged covariance
-  [lag,skill]=cov_lag(signal1,signal2,round(length(signal1)/2));
+  [lag,skill]=cov_lag(signal1,signal2,wind);
   % Find max skill
   [~,i_lag] = max(skill);
   % Get offset
