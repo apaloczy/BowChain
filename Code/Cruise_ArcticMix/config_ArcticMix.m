@@ -30,7 +30,8 @@ config(i).cohere_interval = datenum(['01-Sep-2015 23:08:00';...
 config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
   '03-Sep-2015 05:45']);
 % config.freq_base = 1; % [Hz]
-
+config(i).bin_method = 'time';
+config(i).binned_period = 30;
 
 % Mackenzie Canyon
 i = 2;
@@ -169,4 +170,4 @@ config(i).time_offset_method = 'cohere';
 config(i).cohere_interval = config(i).dn_range;
 
 % force re-parsing of raw data
-config = fill_defaults(config,struct('raw2mat',true));
+% config = fill_defaults(config,struct('raw2mat',true));
