@@ -28,7 +28,8 @@ config(i).time_offset_interval = datenum(['03-Sep-2015 05:38';...
 config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
   '03-Sep-2015 05:45']);
 % config.freq_base = 1; % [Hz]
-
+config(i).bin_method = 'time';
+config(i).binned_period = 30;
 
 % Mackenzie Canyon
 i = 2;

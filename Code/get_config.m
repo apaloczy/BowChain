@@ -66,6 +66,7 @@ opts(6).name = 'sensor_pos';
 opts(7).name = {'time_offset_method','cohere','cohere_interval'};
 opts(8).name = {'time_offset_method','known_drift','time_synched'};
 opts(9).name = {'time_offset_method','known_drift','drift'};
+opts(10).name = {'bin_method','time','binned_period'};
 %
 opts(1).desc = 'deployment name';
 opts(2).desc = 'desired frequency for gridded data';
@@ -76,6 +77,7 @@ opts(6).desc = 'vector of sensor positions (m)';
 opts(7).desc = 'datenum range for determining time offsets';
 opts(8).desc = 'time that clocks were synched (datenum)';
 opts(9).desc = 'measured clock drifts (seconds)';
+opts(10).desc = 'period for time-binned output (s)';
 %
 check_config(cruise,config,opts,'required')
 
