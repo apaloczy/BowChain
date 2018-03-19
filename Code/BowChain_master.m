@@ -9,7 +9,7 @@
 % Author: Dylan Winters
 
 
-function gridded = BowChain_master(cruise,varargin)
+function output = BowChain_master(cruise,varargin)
 
 %% Setup
 % Add dependencies to path
@@ -43,5 +43,7 @@ for i = 1:length(config)
     gridded(i) = post_chain_hook(gridded(i),cfg);
     gridded(i) = proc_gps(gridded(i),cfg);
     gridded(i).info.config = cfg;
+    % 5) Post-processing
+    output(i) = postproc_grid_data(gridded(i),cfg);
 end
 
