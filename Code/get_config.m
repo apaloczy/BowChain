@@ -33,10 +33,14 @@ end
 
 % Limit to deployment(s), if specified
 if nargin > 1
-    if ~iscell(varargin{1})
-        varargin{1} = {varargin{1}};
+    if isfloat(varargin{1})
+        config = config(varargin{1})
+    else
+        if ~iscell(varargin{1})
+            varargin{1} = {varargin{1}};
+        end
+        config = config(ismember({config.name},varargin{1}));
     end
-    config = config(ismember({config.name},varargin{1}));
 end
 
 %% Check for missing configuration settings
