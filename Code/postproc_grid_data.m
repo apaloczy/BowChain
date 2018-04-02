@@ -3,6 +3,8 @@ function out = postproc_grid_data(gridded,cfg)
 %% Check for bin method
 if ~isfield(cfg,'bin_method')
     warning('No bin method specified. Returning point cloud!')
+    out = gridded;
+    return
 end
 
 %% Check for valid GPS data
@@ -15,6 +17,7 @@ if isfield(cfg,'file_gps') % Make sure we have a GPS file specified
     if length(missing_flds) > 1
         warning('GPS file is missing fields: %s. Returning point cloud!',...
                 strjoin(missing_flds,', '))
+        out = gridded;
         return
     end
 end
