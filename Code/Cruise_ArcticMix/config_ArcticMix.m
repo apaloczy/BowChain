@@ -17,16 +17,14 @@ config(i).sensor_sn = {'00451';'100154';'060281';'00407';'100153';...
   '100156'};
 config(i).sensor_pos = [0 2 3 4 6 7 8 9 11 13 15 17 18 19];
 config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
+
 % config(i).chain_model = 'cm_catenary';
 config(i).chain_model = 'cm_straight';
-config(i).time_offset_method = 'cohere';
-% config(i).cohere_interval = config(i).dn_range;
-config(i).cohere_interval = datenum(['01-Sep-2015 23:08:00';...
-  '03-Sep-2015 05:45:25']);
-% config(i).cohere_interval = datenum(['01-Sep-2015 23:08';...
-%   '01-Sep-2015 23:15']);
-% config(i).cohere_interval = datenum(['03-Sep-2015 05:39:00';...
-%   '03-Sep-2015 05:45:25']);
+
+config(i).time_offset_method = 'onestep';
+config(i).time_offset_interval = datenum(['03-Sep-2015 05:38';...
+  '03-Sep-2015 05:48']);
+
 config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
   '03-Sep-2015 05:45']);
 % config.freq_base = 1; % [Hz]
