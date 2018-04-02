@@ -7,7 +7,8 @@ for i = 1:length(config.sensors)
     
     % Check if .mat files already exist
     [~,fname,fext] = fileparts(config.sensors(i).file_raw);
-    if exist(config.sensors(i).file_mat)
+    force_reparse = isfield(config,'raw2mat') && config.raw2mat;
+    if exist(config.sensors(i).file_mat) && ~force_reparse
         % Skip
         disp(['  ' fname '.mat' ' already exists'])
     else
