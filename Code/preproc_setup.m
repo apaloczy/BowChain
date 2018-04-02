@@ -33,7 +33,7 @@ for i = 1:length(config.sensor_sn)
             msg = '  %s [%s]';
             disp(sprintf(msg,sensor_type,sn));
         else
-            msg = '%s [%s]: %d raw file(s), skipped!';
+            msg = '  %s [%s]: %d raw file(s), skipped!';
             disp(sprintf(msg,sensor_type,sn,length(file_raw)));
         end
     else
