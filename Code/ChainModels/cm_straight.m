@@ -11,5 +11,6 @@ end
 
 % Horizontal offsets from geometry
 hyp2 = repmat(diff(gridded.pos).^2,1,numel(gridded.dn));
-x = sqrt(hyp2 - diff(gridded.z).^2);
-gridded.x = [zeros(size(gridded.dn)); cumsum(x)];
+z2 = diff(gridded.z).^2;
+x = real(sqrt(hyp2 - z2));
+gridded.x = -1*[zeros(size(gridded.dn)); cumsum(x)];
