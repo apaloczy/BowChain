@@ -1,6 +1,6 @@
 function gridded = cm_straight(gridded,cfg)
 
-% Assume the chain is completely straight. Calculate vertical positions by
+% Assume the chain shape is linear. Calculate vertical positions by
 % interpolating pressure vs. position.
 hasP = ~all(isnan(gridded.p),2);
 if sum(hasP) > 1
@@ -9,5 +9,7 @@ else
     gridded.z = nan(size(gridded.x));
 end
 
-% This model assumes no horizontal offsets
-gridded.x = zeros(size(gridded.x));
+% Horizontal offsets from geometry
+hyp2 = repmat(diff(gridded.pos).^2,1,numel(gridded.dn));
+x = sqrt(hyp2 - diff(gridded.z).^2);
+gridded.x = [zeros(size(gridded.dn)); cumsum(x)];
