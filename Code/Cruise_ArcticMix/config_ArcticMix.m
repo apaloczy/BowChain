@@ -6,7 +6,7 @@ dir_base = user_directories('ArcticMix');
 
 %% Deployment configuration
 
-% Test Deployment
+% Test Deployment**
 i = 1;
 config(i).name = 'Test';
 config(i).dir_raw = fullfile(dir_base,'20150903Rec');
@@ -29,9 +29,10 @@ config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
   '03-Sep-2015 05:45']);
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
-config(i).binned_period = 30;
+config(i).binned_period = 1;
+config(i).bin_zgrid = -1*(1:20)';
 
-% Mackenzie Canyon
+% Mackenzie Canyon**
 i = 2;
 config(i).name = 'MackCan';
 config(i).dir_raw = fullfile(dir_base,'20150908Rec');
@@ -48,7 +49,7 @@ config(i).cohere_interval = datenum(['04-Sep-2015 06:25';...
   '04-Sep-2015 06:35']);
 
 
-% Mooring to Moving Sea Ice Edge
+% Mooring to Moving Sea Ice Edge**
 i = 3;
 config(i).name = 'MooringToIce';
 config(i).dir_raw = fullfile(dir_base,'20150911Rec');
@@ -66,9 +67,11 @@ config(i).cohere_interval = datenum(['09-Sep-2015 20:30';...
   '09-Sep-2015 22:30']);
 config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
   '09-Sep-2015 14:30']);
+% MAY HAVE ISSUES WITH THE 'TIME' METHOD FOR BINNING BECAUSE OF SHIP SPEED
 
 
-% Repeated MMP Section 1
+
+% Repeated MMP Section 1**
 i = 4;
 config(i).name = 'MMPrepeat1';
 config(i).dir_raw = fullfile(dir_base,'20150911Rec');
@@ -86,8 +89,11 @@ config(i).cohere_interval = datenum(['09-Sep-2015 20:30';...
   '09-Sep-2015 22:30']);
 config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
   '09-Sep-2015 14:30']);
+%
+config(i).bin_method = 'time';
+config(i).binned_period = 30;
 
-% Repeated MMP Section 2
+% Repeated MMP Section 2**
 i = 5;
 config(i).name = 'MMPrepeat2';
 config(i).dir_raw = fullfile(dir_base,'20150914Rec');
@@ -104,7 +110,7 @@ config(i).time_offset_method = 'cohere';
 config(i).cohere_interval = config(i).dn_range;
 
 
-% Small Boat During Coordinated Ice Edge Sampling
+% Small Boat During Coordinated Ice Edge Sampling**
 i = 6;
 config(i).name = 'SmallBoatCoord';
 config(i).dir_raw = fullfile(dir_base,'20150916Rec');
@@ -119,7 +125,7 @@ config(i).time_offset_method = 'cohere';
 config(i).cohere_interval = config(i).dn_range;
 
 
-% Sikuliaq During Coordinate Ice Edge Sampling
+% Sikuliaq During Coordinate Ice Edge Sampling**
 i = 7;
 config(i).name = 'SikuliaqCoord';
 config(i).dir_raw = fullfile(dir_base,'20150916Rec');
@@ -135,7 +141,7 @@ config(i).time_offset_method = 'cohere';
 config(i).cohere_interval = config(i).dn_range;
 
 
-% Warm Core Eddy Sections
+% Warm Core Eddy Sections**
 i = 8;
 config(i).name = 'HotBlob';
 config(i).dir_raw = fullfile(dir_base,'20150918Rec');
@@ -151,7 +157,7 @@ config(i).time_offset_method = 'cohere';
 config(i).cohere_interval = config(i).dn_range;
 
 
-% Bering Strait Sections
+% Bering Strait Sections**
 i = 9;
 config(i).name = 'BeringStrait';
 config(i).dir_raw = fullfile(dir_base,'20150925Rec');
