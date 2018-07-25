@@ -4,8 +4,7 @@ function config = config_ArcticMix()
 dir_base = user_directories('ArcticMix');
 % dir_base = 'Arctic/ArcticMix/bowchain/';
 
-%% Deployment configuration
-
+%% Deployment configurations
 % Test Deployment
 i = 1;
 config(i).name = 'Test';
@@ -30,6 +29,7 @@ config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
 config(i).binned_period = 30;
+
 
 % Mackenzie Canyon
 i = 2;
@@ -81,11 +81,17 @@ config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 11 12 13 14 14.5 15 16 17 ...
   18 19];
 config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 config(i).chain_model = 'cm_straight';
-config(i).time_offset_method = 'cohere';
-config(i).cohere_interval = datenum(['09-Sep-2015 20:30';...
-  '09-Sep-2015 22:30']);
+
+config(i).time_offset_method = 'onestep';
+config(i).time_offset_interval = datenum(['09-Sep-2015 21:23';...
+  '09-Sep-2015 21:28']);
+
 config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
   '09-Sep-2015 14:30']);
+
+config(i).bin_method = 'time';
+config(i).binned_period = 2;
+
 
 % Repeated MMP Section 2
 i = 5;
