@@ -50,26 +50,26 @@ switch cfg.bin_method
     t  = dn(1:end-1) + diff(dn)/2;
     vx = interp1(t, diff(x)./dt, gridded.dn);
     vy = interp1(t, diff(y)./dt, gridded.dn);
-    spd = sqrt(vx.^2 + vy.^2);
+    spd = sqrt(vx.^2 + vy.^2); %[m/s]
 
     %% Apply speed-dependent sensor time offsets
     spd2 = ones(length(gridded.pos),1)*spd;
     dn_base = ones(length(gridded.pos),1)*gridded.dn;
-    dn_offset = dn_base - (gridded.x ./ spd2);
+    dn_offset = dn_base - (gridded.x ./ spd2)./86400;
 
     %% Bin the data
+    % define the z grid
+    out.z = cfg.bin_zgrid;
     % define bin edges and output time vector
     dt = cfg.binned_period/86400; % convert binned period to days (datenum)
     tbin = gridded.dn(1):dt:gridded.dn(end); % bin edges
     out.dn = tbin(1:end-1) + dt/2; % use bin centers for output time vector
-    % assign time bin numbers to each measurement
-    [n,~,tbin] = histcounts(dn_offset,tbin);
-    % we also need depth bin numbers - just use sensor index
-    dbin = [1:length(gridded.pos)]'*ones(1,length(gridded.dn));
-    % use accumarray to average all data within each bin
-    flds = {'t','p','s','z'};
+    % grid the scattered data
+    flds = {'t','s'};
+    [dnq,zq] = meshgrid(out.dn,out.z);
     for i = 1:length(flds)
-        out.(flds{i}) = accumarray([dbin(:),tbin(:)],gridded.(flds{i})(:),[],@nanmean);
+        F = scatteredInterpolant(dn_offset(:),gridded.z(:),gridded.(flds{i})(:));
+        out.(flds{i}) = F(dnq,zq);
     end
 
     out.lat = interp1(gps.dn,gps.lat,out.dn);
