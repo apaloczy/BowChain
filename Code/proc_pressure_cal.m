@@ -11,7 +11,7 @@ if isfield(cfg,'zero_pressure_interval') && ~isempty(cfg.zero_pressure_interval)
         if isfield(data{i},'p') && ~all(isnan(pcalgrid.p(i,:)));
             p0 = nanmean(pcalgrid.p(i,:));
             data{i}.p = data{i}.p - p0;
-            disp(sprintf('Removed %.2fdbar pressure offset from %s',...
+            disp(sprintf('Removed %.2f dbar pressure offset from %s',...
                          p0,data{i}.sn))
         end
     end

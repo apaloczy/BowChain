@@ -6,6 +6,9 @@ switch cfg.time_offset_method
   case 'known_drift'
     % Correct for a measured clock drift
     offsets = time_offsets_known_drift(data,cfg);
+  case 'known_offsets'
+    % Correct for known clock offsets
+    offsets = cfg.time_offsets./86400;
   case 'cohere'
     fprintf('Calibrating clocks over interval: %s,%s\n',...
                  datestr(cfg.cohere_interval(1)),...
