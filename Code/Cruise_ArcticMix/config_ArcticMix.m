@@ -33,7 +33,7 @@ config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
 % Binning method
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
-config(i).binned_period = 30;
+config(i).binned_period = 2;
 
 
 %% Mackenzie Canyon
@@ -222,13 +222,44 @@ config(i).cohere_interval = config(i).dn_range;
 % Binning method
 
 
-%% Bering Strait Sections
+%% Bering Strait Section 1
 i = 9;
 % Deployment name and path
-config(i).name = 'BeringStrait';
+config(i).name = 'BeringStrait1';
 config(i).dir_raw = fullfile(dir_base,'20150925Rec');
 % Deployment duration
 config(i).dn_range = datenum(['23-Sep-2015 23:42:00';...
+  '24-Sep-2015 06:43:00']);
+% Sensor configuration
+config(i).sensor_sn = {'00453';'100154';'100161';'00406';'060281';...
+  '00407';'100160';'100153';'00445';'100157';'012712';'100162';'00423';...
+  '100158';'00442';'100155';'00449';'100159';'00372';'060280';'100156'};
+config(i).sensor_pos = [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ...
+  19 20];
+% GPS file and path
+config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
+% Chain model
+config(i).chain_model = 'cm_straight';
+% Time offset
+config(i).time_offset_method = 'known_offsets';
+config(i).time_offsets = [0; -0.5; -0.5; 0.5; -136.5; -1; -1; 3.5; 1; ...
+  2; 2; 2.5; 1.5; 1.5; 2; 1; 5; 5; 12.5; 9;];
+% Pressure correction
+config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
+  '25-Sep-2015 11:20']);
+% Binning method
+% config.freq_base = 1; % [Hz]
+config(i).bin_method = 'time';
+config(i).binned_period = 2;
+
+
+%% Bering Strait Section 2
+i = 10;
+% Deployment name and path
+config(i).name = 'BeringStrait2';
+config(i).dir_raw = fullfile(dir_base,'20150925Rec');
+% Deployment duration
+config(i).dn_range = datenum(['24-Sep-2015 15:01:00';...
   '25-Sep-2015 10:37:00']);
 % Sensor configuration
 config(i).sensor_sn = {'00453';'100154';'100161';'00406';'060281';...
@@ -241,10 +272,17 @@ config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 % Chain model
 config(i).chain_model = 'cm_straight';
 % Time offset
-config(i).time_offset_method = 'cohere';
-config(i).cohere_interval = config(i).dn_range;
+config(i).time_offset_method = 'known_offsets';
+config(i).time_offsets = [0; -0.5; -0.5; 0.5; -136.5; -1; -1; 3.5; 1; ...
+  2; 2; 2.5; 1.5; 1.5; 2; 1; 5; 5; 12.5; 9;];
 % Pressure correction
+config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
+  '25-Sep-2015 11:20']);
 % Binning method
+% config.freq_base = 1; % [Hz]
+config(i).bin_method = 'time';
+config(i).binned_period = 2;
+
 
 % force re-parsing of raw data
 % config = fill_defaults(config,struct('raw2mat',true));
