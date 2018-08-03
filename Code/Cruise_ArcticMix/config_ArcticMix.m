@@ -198,7 +198,7 @@ config(i).cohere_interval = config(i).dn_range;
 % Binning method
 
 
-%% Warm Core Eddy Sections
+%% Warm Core Eddy Sections - set 8/2/2018 by MSA
 i = 8;
 % Deployment name and path
 config(i).name = 'HotBlob';
@@ -216,13 +216,19 @@ config(i).file_gps = [dir_base 'Sikuliaq_gps.mat'];
 % Chain model
 config(i).chain_model = 'cm_straight';
 % Time offset
-config(i).time_offset_method = 'cohere';
-config(i).cohere_interval = config(i).dn_range;
+config(i).time_offset_method = 'known_offsets';
+config(i).time_offsets = [0; -0.5; -0.5; 0.5; -136.5; -1; -1; 3.5; 1; ...
+  2; 2; 2.5; 1.5; 2; 1; 5; 5; 12.5; 9];
 % Pressure correction
+config(i).zero_pressure_interval = datenum(['17-Sep-2015 19:20';...
+  '17-Sep-2015 19:30']);
 % Binning method
+% config.freq_base = 1; % [Hz]
+config(i).bin_method = 'time';
+config(i).binned_period = 2;
 
 
-%% Bering Strait Section 1
+%% Bering Strait Section 1 - set 8/2/2018 by MSA
 i = 9;
 % Deployment name and path
 config(i).name = 'BeringStrait1';
@@ -243,7 +249,7 @@ config(i).chain_model = 'cm_straight';
 % Time offset
 config(i).time_offset_method = 'known_offsets';
 config(i).time_offsets = [0; -0.5; -0.5; 0.5; -136.5; -1; -1; 3.5; 1; ...
-  2; 2; 2.5; 1.5; 1.5; 2; 1; 5; 5; 12.5; 9;];
+  2; 2; 2.5; 1.5; 1.5; 2; 1; 5; 5; 12.5; 9];
 % Pressure correction
 config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
   '25-Sep-2015 11:20']);
@@ -253,7 +259,7 @@ config(i).bin_method = 'time';
 config(i).binned_period = 2;
 
 
-%% Bering Strait Section 2
+%% Bering Strait Section 2 - set 8/2/2018 by MSA
 i = 10;
 % Deployment name and path
 config(i).name = 'BeringStrait2';
@@ -274,7 +280,7 @@ config(i).chain_model = 'cm_straight';
 % Time offset
 config(i).time_offset_method = 'known_offsets';
 config(i).time_offsets = [0; -0.5; -0.5; 0.5; -136.5; -1; -1; 3.5; 1; ...
-  2; 2; 2.5; 1.5; 1.5; 2; 1; 5; 5; 12.5; 9;];
+  2; 2; 2.5; 1.5; 1.5; 2; 1; 5; 5; 12.5; 9];
 % Pressure correction
 config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
   '25-Sep-2015 11:20']);
