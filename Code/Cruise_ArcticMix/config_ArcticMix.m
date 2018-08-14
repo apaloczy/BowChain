@@ -33,7 +33,7 @@ config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
 % Binning method
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
-config(i).binned_period = 2;
+config(i).binned_period = 1;
 
 
 %% Mackenzie Canyon
@@ -88,7 +88,7 @@ config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
   '09-Sep-2015 14:30']);
 % Binning method
 config(i).bin_method = 'time';
-config(i).binned_period = 2;
+config(i).binned_period = 1;
 
 
 %% Repeated MMP Section 1 - set 7/26/2018 by MSA
@@ -118,7 +118,7 @@ config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
   '09-Sep-2015 14:30']);
 % Binning method
 config(i).bin_method = 'time';
-config(i).binned_period = 2;
+config(i).binned_period = 1;
 
 
 %% Repeated MMP Section 2 - set 7/26/2018 by MSA
@@ -148,7 +148,7 @@ config(i).zero_pressure_interval = datenum(['14-Sep-2015 22:00';...
   '14-Sep-2015 23:30']);
 % Binning method
 config(i).bin_method = 'time';
-config(i).binned_period = 2;
+config(i).binned_period = 1;
 
 
 %% Small Boat During Coordinated Ice Edge Sampling
@@ -225,7 +225,7 @@ config(i).zero_pressure_interval = datenum(['17-Sep-2015 19:20';...
 % Binning method
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
-config(i).binned_period = 2;
+config(i).binned_period = 1;
 
 
 %% Bering Strait Section 1 - set 8/2/2018 by MSA
@@ -256,7 +256,7 @@ config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
 % Binning method
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
-config(i).binned_period = 2;
+config(i).binned_period = 1;
 
 
 %% Bering Strait Section 2 - set 8/2/2018 by MSA
@@ -287,7 +287,7 @@ config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
 % Binning method
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
-config(i).binned_period = 2;
+config(i).binned_period = 1;
 
 
 % force re-parsing of raw data
