@@ -69,9 +69,9 @@ switch cfg.bin_method
     flds = {'t','s'};
     [dnq,zq] = meshgrid(out.dn,out.z);
     for i = 1:length(flds)
-        F = scatteredInterpolant(dn_offset(:),gridded.z(:),...
+        F = scatteredInterpolant(dn_offset(:)*86400,gridded.z(:),...
           gridded.(flds{i})(:));
-        out.(flds{i}) = F(dnq,zq);
+        out.(flds{i}) = F(dnq*86400,zq);
     end
 
     out.lat = interp1(gps.dn,gps.lat,out.dn);
