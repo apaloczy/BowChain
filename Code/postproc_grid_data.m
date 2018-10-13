@@ -55,7 +55,8 @@ switch cfg.bin_method
     %% Apply speed-dependent sensor time offsets
     spd2 = ones(length(gridded.pos),1)*spd;
     dn_base = ones(length(gridded.pos),1)*gridded.dn;
-    dn_offset = dn_base - (gridded.x ./ spd2)./86400;
+    dn_offset = dn_base - ((gridded.x ./ spd2)./86400);
+    dn_offset(spd2 == 0) = 0;
 
     %% Bin the data
     % define the z grid
@@ -68,7 +69,8 @@ switch cfg.bin_method
     flds = {'t','s'};
     [dnq,zq] = meshgrid(out.dn,out.z);
     for i = 1:length(flds)
-        F = scatteredInterpolant(dn_offset(:),gridded.z(:),gridded.(flds{i})(:));
+        F = scatteredInterpolant(dn_offset(:),gridded.z(:),...
+          gridded.(flds{i})(:));
         out.(flds{i}) = F(dnq,zq);
     end
 
