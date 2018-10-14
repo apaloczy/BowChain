@@ -80,6 +80,10 @@ switch cfg.bin_method
     if isfield(cfg,'include_config') && cfg.include_config
         out.config = cfg;
     end
+    
+    if isfield(cfg,'include_ungridded') && cfg.unclude_ungridded
+      out.ungridded = rmfield(gridded,'info');
+    end
 
   case 'space'
     % Assign a lat/lon to each measurement and then bin spatially
