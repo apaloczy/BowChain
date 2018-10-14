@@ -33,6 +33,9 @@ config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(1:19)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Mackenzie Canyon
@@ -89,6 +92,9 @@ config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(2:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Repeated MMP Section 1 - set 10/13/2018 by MSA
@@ -120,6 +126,9 @@ config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(2:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Repeated MMP Section 2 - set 10/13/2018 by MSA
@@ -151,6 +160,9 @@ config(i).zero_pressure_interval = datenum(['14-Sep-2015 22:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(2:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Small Boat During Coordinated Ice Edge Sampling
@@ -228,6 +240,9 @@ config(i).zero_pressure_interval = datenum(['17-Sep-2015 19:20';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(1:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Bering Strait Section 1 - set 10/13/2018 by MSA
@@ -260,6 +275,9 @@ config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(1:16)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Bering Strait Section 2 - set 10/13/2018 by MSA
@@ -292,3 +310,6 @@ config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(1:20)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;

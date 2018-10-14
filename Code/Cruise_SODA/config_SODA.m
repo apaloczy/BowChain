@@ -32,6 +32,9 @@ config(i).zero_pressure_interval = datenum(['08-Sep-2018 21:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(3:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 1.2 - set 10/13/2018 by MSA
@@ -62,6 +65,9 @@ config(i).zero_pressure_interval = datenum(['09-Sep-2018 21:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(3:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 2 - set 10/13/2018 by MSA
@@ -92,6 +98,9 @@ config(i).zero_pressure_interval = datenum(['14-Sep-2018 01:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(3:20)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 3 - set 10/13/2018 by MSA
@@ -122,6 +131,9 @@ config(i).zero_pressure_interval = datenum(['15-Sep-2018 07:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(3:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 4 - set 10/13/2018 by MSA
@@ -152,6 +164,9 @@ config(i).zero_pressure_interval = datenum(['21-Sep-2018 01:30';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(4:22)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 5 - set 10/13/2018 by MSA
@@ -182,6 +197,9 @@ config(i).zero_pressure_interval = datenum(['21-Sep-2018 07:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(4:20)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 6.1 - set 10/13/2018 by MSA
@@ -212,6 +230,9 @@ config(i).zero_pressure_interval = datenum(['21-Sep-2018 18:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(3:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 6.2 - set 10/13/2018 by MSA
@@ -242,6 +263,9 @@ config(i).zero_pressure_interval = datenum(['22-Sep-2018 09:30';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(4:22)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 7.1 - set 10/13/2018 by MSA
@@ -272,6 +296,9 @@ config(i).zero_pressure_interval = datenum(['27-Sep-2018 20:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(4:20)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
 
 
 %% Deployment 7.2 - set 10/13/2018 by MSA
@@ -302,3 +329,6 @@ config(i).zero_pressure_interval = datenum(['27-Sep-2018 20:00';...
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
 config(i).bin_zgrid = -1*(3:21)';
+% Save config and ungridded data
+config(i).include_config = 1;
+config(i).include_ungridded = 1;
