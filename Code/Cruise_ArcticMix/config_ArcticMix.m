@@ -2,10 +2,9 @@ function config = config_ArcticMix()
 % Repository of bowchain configurations from the ArcticMix Cruise.
 
 dir_base = user_directories('ArcticMix');
-% dir_base = 'Arctic/ArcticMix/bowchain/';
 
 % Deployment configurations
-%% Test Deployment - set 7/26/2018 by MSA
+%% Test Deployment - set 10/13/2018 by MSA
 i = 1;
 % Deployment name and path
 config(i).name = 'Test';
@@ -31,10 +30,9 @@ config(i).time_offset_interval = datenum(['03-Sep-2015 05:38';...
 config(i).zero_pressure_interval = datenum(['03-Sep-2015 05:36';...
   '03-Sep-2015 05:45']);
 % Binning method
-% config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
-config(i).bin_zgrid = -1*(1:20)';
+config(i).bin_zgrid = -1*(1:19)';
 
 
 %% Mackenzie Canyon
@@ -62,7 +60,7 @@ config(i).cohere_interval = datenum(['04-Sep-2015 06:25';...
 % Binning method
 
 
-%% Mooring to Moving Sea Ice Edge - set 7/26/2018 by MSA
+%% Mooring to Moving Sea Ice Edge - set 10/13/2018 by MSA
 i = 3;
 % Deployment name and path
 config(i).name = 'MooringToIce';
@@ -90,9 +88,10 @@ config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
 % Binning method
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
+config(i).bin_zgrid = -1*(2:21)';
 
 
-%% Repeated MMP Section 1 - set 7/26/2018 by MSA
+%% Repeated MMP Section 1 - set 10/13/2018 by MSA
 i = 4;
 % Deployment name and path
 config(i).name = 'MMPrepeat1';
@@ -120,9 +119,10 @@ config(i).zero_pressure_interval = datenum(['09-Sep-2015 10:30';...
 % Binning method
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
+config(i).bin_zgrid = -1*(2:21)';
 
 
-%% Repeated MMP Section 2 - set 7/26/2018 by MSA
+%% Repeated MMP Section 2 - set 10/13/2018 by MSA
 i = 5;
 % Deployment name and path
 config(i).name = 'MMPrepeat2';
@@ -150,6 +150,7 @@ config(i).zero_pressure_interval = datenum(['14-Sep-2015 22:00';...
 % Binning method
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
+config(i).bin_zgrid = -1*(2:21)';
 
 
 %% Small Boat During Coordinated Ice Edge Sampling
@@ -199,7 +200,7 @@ config(i).cohere_interval = config(i).dn_range;
 % Binning method
 
 
-%% Warm Core Eddy Sections - set 8/2/2018 by MSA
+%% Warm Core Eddy Sections - set 10/13/2018 by MSA
 i = 8;
 % Deployment name and path
 config(i).name = 'HotBlob';
@@ -224,12 +225,12 @@ config(i).time_offsets = [0; -0.5; -0.5; 0.5; -136.5; -1; -1; 3.5; 1; ...
 config(i).zero_pressure_interval = datenum(['17-Sep-2015 19:20';...
   '17-Sep-2015 19:30']);
 % Binning method
-% config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
+config(i).bin_zgrid = -1*(1:21)';
 
 
-%% Bering Strait Section 1 - set 8/2/2018 by MSA
+%% Bering Strait Section 1 - set 10/13/2018 by MSA
 i = 9;
 % Deployment name and path
 config(i).name = 'BeringStrait1';
@@ -258,9 +259,10 @@ config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
+config(i).bin_zgrid = -1*(1:16)';
 
 
-%% Bering Strait Section 2 - set 8/2/2018 by MSA
+%% Bering Strait Section 2 - set 10/13/2018 by MSA
 i = 10;
 % Deployment name and path
 config(i).name = 'BeringStrait2';
@@ -289,7 +291,4 @@ config(i).zero_pressure_interval = datenum(['25-Sep-2015 10:50';...
 % config.freq_base = 1; % [Hz]
 config(i).bin_method = 'time';
 config(i).binned_period = 1;
-
-
-% force re-parsing of raw data
-% config = fill_defaults(config,struct('raw2mat',true));
+config(i).bin_zgrid = -1*(1:20)';
