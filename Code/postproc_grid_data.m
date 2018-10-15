@@ -81,7 +81,7 @@ switch cfg.bin_method
         out.config = cfg;
     end
     
-    if isfield(cfg,'include_ungridded') && cfg.unclude_ungridded
+    if isfield(cfg,'include_ungridded') && cfg.include_ungridded
       out.ungridded = rmfield(gridded,'info');
     end
 
